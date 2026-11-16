@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Сайты под ключ — портфолио</title>
-<meta name="description" content="Делаю сайты под ключ: лендинги, визитки, онлайн-приглашения. Хостинг, домен, формы, интеграции, база данных и самостоятельное редактирование блоков.">
+<meta name="description" content="Делаю сайты под ключ индивидуально под заказчика: лендинги, визитки, онлайн-приглашения, сложные анимации. Хостинг, домен, формы, интеграции, база данных и самостоятельное редактирование блоков.">
 <meta property="og:title" content="Сайты под ключ — портфолио">
 <meta property="og:description" content="Лендинги, визитки, онлайн-приглашения. Хостинг, домен, интеграции, база данных.">
 <meta property="og:locale" content="ru_RU">
@@ -55,10 +55,23 @@ h2{font-size:30px;margin:0 0 28px}
 .price{width:100%;border-collapse:collapse}
 .price td:last-child{text-align:right;font-weight:600;white-space:nowrap;padding-left:16px}
 .contact{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px;text-align:center}
+.case{grid-template-columns:1fr 1fr}
+.case .mock{grid-column:1/-1;position:relative;padding:8px 9% 40px 0;margin-bottom:4px}
+.laptop{position:relative}
+.laptop .screen{background:#1b1a19;border-radius:14px 14px 0 0;padding:2.2% 2.2% 0;box-shadow:0 24px 50px -20px rgba(0,0,0,.35)}
+.laptop .screen img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:4px 4px 0 0}
+.laptop .base{height:14px;margin:0 -5%;background:linear-gradient(#d9d5ce,#b9b4ab);border-radius:0 0 14px 14px;position:relative}
+.laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);background:#a7a198;border-radius:0 0 8px 8px}
+.phone{position:absolute;right:0;bottom:0;width:23%;background:#111;border-radius:28px;padding:7px;box-shadow:0 24px 40px -14px rgba(0,0,0,.45)}
+.phone img{display:block;width:100%;height:auto;aspect-ratio:1/2;object-fit:cover;object-position:top;border-radius:22px}
+.phone::before{content:"";position:absolute;top:13px;left:50%;width:30%;height:9px;transform:translateX(-50%);background:#111;border-radius:9px;z-index:1}
+@media (prefers-color-scheme:dark){.laptop .base{background:linear-gradient(#57524b,#3d3934)}.laptop .base::after{background:#2c2925}.phone{box-shadow:0 0 0 1px #3a3631,0 24px 40px -14px #000}}
+@media (max-width:720px){.case .mock{padding:4px 12% 28px 0}.phone{width:30%;border-radius:18px;padding:4px}.phone img{border-radius:14px}.phone::before{top:8px;height:6px}.laptop .base{height:9px}}
 footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
 @media (max-width:720px){
   nav{display:none}
   .case{grid-template-columns:1fr;padding:22px}
+  .case .mock{grid-column:auto}
   .btn.ghost{margin:10px 0 0}
   .wrap{padding:0 16px}
 }
@@ -75,7 +88,7 @@ footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
 <main>
 <div class="wrap hero">
   <h1>Сайт, который просто работает: от макета до домена</h1>
-  <p>Делаю лендинги, сайты-визитки и онлайн-приглашения. Размещаю на хостинге, подключаю домен, формы, базу данных и нужные сервисы. Небольшие сайты отдаю с возможностью самостоятельно менять тексты и блоки.</p>
+  <p>Делаю лендинги, сайты-визитки и онлайн-приглашения индивидуально под каждого заказчика, без шаблонов, в том числе со сложными анимациями. Размещаю на хостинге, подключаю домен, формы, базу данных и нужные сервисы. Небольшие сайты отдаю с возможностью самостоятельно менять тексты и блоки.</p>
   <a class="btn" href="#contact">Обсудить сайт</a>
   <a class="btn ghost" href="#cases">Посмотреть работы</a>
 </div>
@@ -84,11 +97,12 @@ footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
   <div class="wrap">
     <h2>Что я делаю</h2>
     <div class="grid">
-      <div class="card"><div class="icon">1</div><h3>Сайт под ключ</h3><p>Лендинг, визитка, приглашение. Адаптив под телефон, быстрая загрузка, красивое превью ссылки в мессенджерах.</p></div>
+      <div class="card"><div class="icon">1</div><h3>Сайт под ключ</h3><p>Лендинг, визитка, приглашение. Дизайн и структура индивидуально под вашу задачу, без шаблонов. Адаптив под телефон, быстрая загрузка, красивое превью ссылки в мессенджерах.</p></div>
       <div class="card"><div class="icon">2</div><h3>Хостинг и домен</h3><p>Подбираю и регистрирую домен, размещаю сайт на хостинге, настраиваю HTTPS.</p></div>
       <div class="card"><div class="icon">3</div><h3>Сервисы и интеграции</h3><p>Формы заявок, Telegram, карты, календари, аналитика, CRM и другие сервисы.</p></div>
       <div class="card"><div class="icon">4</div><h3>База данных</h3><p>Заявки, ответы анкет и другие данные сохраняются в базе, а не теряются в почте.</p></div>
       <div class="card"><div class="icon">5</div><h3>Сами редактируете блоки</h3><p>Для небольших сайтов: меняйте тексты, фото и цены без программиста.</p></div>
+      <div class="card"><div class="icon">6</div><h3>Сложные анимации</h3><p>Открывающиеся конверты, плавные появления блоков, эффекты при прокрутке и нажатии. Сайт запоминается и выглядит дорого.</p></div>
     </div>
   </div>
 </section>
@@ -98,6 +112,10 @@ footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
     <h2>Работы</h2>
 
     <article class="case">
+      <div class="mock">
+        <div class="laptop"><div class="screen"><img src="img/wedding-desktop.jpg" alt="Свадебное приглашение: версия для компьютера" loading="lazy" width="1440" height="900"></div><div class="base"></div></div>
+        <div class="phone"><img src="img/wedding-mobile.jpg" alt="Свадебное приглашение: версия для телефона" loading="lazy" width="390" height="824"></div>
+      </div>
       <div>
         <span class="tag">Онлайн-приглашение</span>
         <h3>Свадебное приглашение с анкетой гостей</h3>
@@ -116,6 +134,10 @@ footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
     </article>
 
     <article class="case">
+      <div class="mock">
+        <div class="laptop"><div class="screen"><img src="img/marketer-desktop.jpg" alt="Сайт Виктории Корниенко: версия для компьютера" loading="lazy" width="1440" height="900"></div><div class="base"></div></div>
+        <div class="phone"><img src="img/marketer-mobile.jpg" alt="Сайт Виктории Корниенко: версия для телефона" loading="lazy" width="390" height="824"></div>
+      </div>
       <div>
         <span class="tag">Сайт эксперта</span>
         <h3>Сайт интернет-маркетолога Виктории Корниенко</h3>
