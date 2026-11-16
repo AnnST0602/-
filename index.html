@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты под ключ — портфолио</title>
+<meta name="description" content="Делаю сайты под ключ: лендинги, визитки, онлайн-приглашения. Хостинг, домен, формы, интеграции, база данных и самостоятельное редактирование блоков.">
+<meta property="og:title" content="Сайты под ключ — портфолио">
+<meta property="og:description" content="Лендинги, визитки, онлайн-приглашения. Хостинг, домен, интеграции, база данных.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0; --surface:#ffffff; --text:#1d1b18; --muted:#6b665e;
+  --accent:#d97757; --accent-soft:#f6e3db; --line:#e6e1d8;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#161513; --surface:#211f1c; --text:#f1ede6; --muted:#a9a297;
+         --accent:#e88b6c; --accent-soft:#3a2a23; --line:#34302b; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-weight:800;text-decoration:none}
+nav a{margin-left:18px;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--text)}
+.hero{padding:72px 0 56px}
+.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin:0 0 18px;max-width:780px}
+.hero p{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 28px}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:14px 24px;border-radius:12px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:8px}
+section{padding:56px 0}
+h2{font-size:30px;margin:0 0 28px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.card h3{margin:0 0 8px;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.icon{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800;margin-bottom:12px}
+.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;margin-bottom:22px}
+.case .tag{display:inline-block;font-size:13px;background:var(--accent-soft);color:var(--accent);padding:4px 10px;border-radius:999px;margin-bottom:10px;font-weight:600}
+.case h3{font-size:24px;margin:0 0 10px}
+.case ul{margin:0;padding-left:20px}
+.case li{margin:4px 0}
+.case .task{color:var(--muted);margin:0 0 16px}
+.case a.link{display:inline-block;margin-top:16px;font-weight:600;color:var(--accent)}
+.steps{counter-reset:s;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.steps .card::before{counter-increment:s;content:counter(s);display:block;font-size:28px;font-weight:800;color:var(--accent)}
+.price td{padding:12px 0;border-bottom:1px solid var(--line)}
+.price{width:100%;border-collapse:collapse}
+.price td:last-child{text-align:right;font-weight:600;white-space:nowrap;padding-left:16px}
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px;text-align:center}
+footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
+@media (max-width:720px){
+  nav{display:none}
+  .case{grid-template-columns:1fr;padding:22px}
+  .btn.ghost{margin:10px 0 0}
+  .wrap{padding:0 16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">Ann · сайты под ключ</a>
+    <nav><a href="#services">Услуги</a><a href="#cases">Работы</a><a href="#steps">Как работаю</a><a href="#prices">Цены</a><a href="#contact">Связаться</a></nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <h1>Сайт, который просто работает: от макета до домена</h1>
+  <p>Делаю лендинги, сайты-визитки и онлайн-приглашения. Размещаю на хостинге, подключаю домен, формы, базу данных и нужные сервисы. Небольшие сайты отдаю с возможностью самостоятельно менять тексты и блоки.</p>
+  <a class="btn" href="#contact">Обсудить сайт</a>
+  <a class="btn ghost" href="#cases">Посмотреть работы</a>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <h2>Что я делаю</h2>
+    <div class="grid">
+      <div class="card"><div class="icon">1</div><h3>Сайт под ключ</h3><p>Лендинг, визитка, приглашение. Адаптив под телефон, быстрая загрузка, красивое превью ссылки в мессенджерах.</p></div>
+      <div class="card"><div class="icon">2</div><h3>Хостинг и домен</h3><p>Подбираю и регистрирую домен, размещаю сайт на хостинге, настраиваю HTTPS.</p></div>
+      <div class="card"><div class="icon">3</div><h3>Сервисы и интеграции</h3><p>Формы заявок, Telegram, карты, календари, аналитика, CRM и другие сервисы.</p></div>
+      <div class="card"><div class="icon">4</div><h3>База данных</h3><p>Заявки, ответы анкет и другие данные сохраняются в базе, а не теряются в почте.</p></div>
+      <div class="card"><div class="icon">5</div><h3>Сами редактируете блоки</h3><p>Для небольших сайтов: меняйте тексты, фото и цены без программиста.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <h2>Работы</h2>
+
+    <article class="case">
+      <div>
+        <span class="tag">Онлайн-приглашение</span>
+        <h3>Свадебное приглашение с анкетой гостей</h3>
+        <p class="task">Задача: заменить бумажные приглашения одной ссылкой, которую удобно отправить в мессенджер, и собрать ответы гостей в одном месте.</p>
+        <a class="link" href="https://svadba-ad.htmlkin.ru/" target="_blank" rel="noopener">Открыть сайт →</a>
+      </div>
+      <ul>
+        <li>Экран-конверт: гость нажимает на печать и «открывает» приглашение</li>
+        <li>Таймер обратного отсчёта и календарь с отмеченной датой</li>
+        <li>Тайминг дня, локация со ссылкой на Яндекс Карты</li>
+        <li>Дресс-код с палитрой цветов и пожелания пары</li>
+        <li>Анкета RSVP: «приду / с парой / не смогу», напитки, аллергии, с возможностью изменить ответ</li>
+        <li>Кнопка «Добавить в Google Календарь»</li>
+        <li>Адаптив под телефон и превью ссылки для мессенджеров</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="tag">Сайт эксперта</span>
+        <h3>Сайт интернет-маркетолога Виктории Корниенко</h3>
+        <p class="task">Задача: сайт специалиста по Яндекс Директу, который показывает экспертизу, кейсы и отзывы и приводит заявки на аудит.</p>
+        <a class="link" href="https://viikornienko.ru" target="_blank" rel="noopener">Открыть сайт →</a>
+      </div>
+      <ul>
+        <li>17 блоков: подход, обо мне, аудит, отчётность, услуги, кейсы, отзывы, медиа</li>
+        <li>13 кейсов с кнопкой «Показать ещё», чтобы страница не была перегружена</li>
+        <li>Отзывы: тексты, видео, скриншоты переписок и благодарственные письма</li>
+        <li>Галерея отчётов с увеличением по клику, YouTube-видео грузятся только по нажатию</li>
+        <li>Форма заявки с выбором услуги и согласием на обработку данных, политика конфиденциальности</li>
+        <li>Кнопки Telegram и MAX, якорное меню, мобильная версия</li>
+        <li>Свой домен, изображения в WebP, превью для соцсетей</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="wrap">
+    <h2>Как я работаю</h2>
+    <div class="steps">
+      <div class="card"><h3>Обсуждаем задачу</h3><p>Что за сайт, для кого, какие блоки и сервисы нужны.</p></div>
+      <div class="card"><h3>Делаю сайт</h3><p>Показываю промежуточный вариант, вношу правки.</p></div>
+      <div class="card"><h3>Подключаю всё нужное</h3><p>Домен, хостинг, формы, базу данных, интеграции.</p></div>
+      <div class="card"><h3>Запускаю и передаю</h3><p>Показываю, как редактировать блоки, если это нужно.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Цены</h2>
+    <div class="card">
+      <table class="price">
+        <tr><td>Онлайн-приглашение</td><td>от [цена] ₽</td></tr>
+        <tr><td>Лендинг или сайт-визитка</td><td>от [цена] ₽</td></tr>
+        <tr><td>Хостинг и подключение домена</td><td>от [цена] ₽</td></tr>
+        <tr><td>Интеграции и подключение сервисов</td><td>от [цена] ₽</td></tr>
+        <tr><td>Подключение базы данных</td><td>от [цена] ₽</td></tr>
+        <tr><td>Самостоятельное редактирование блоков</td><td>от [цена] ₽</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Обсудим ваш сайт?</h2>
+      <p>Напишите, что нужно сделать, и я отвечу, сколько это будет стоить и сколько займёт времени.</p>
+      <a class="btn" href="https://t.me/[ваш_ник]">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 · Ann · сайты под ключ</footer>
+</body>
+</html>
