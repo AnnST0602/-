@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ami Osteria · стол для друзей</title>
+<meta name="description" content="Набросок сайта для Ami Osteria: итальянская кухня, паста ручной работы, бронь стола на компанию.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Концепция «Стол друзей»: стол сверху, блюда выезжают на него при прокрутке; дальше меню, ужин на компанию, поводы, бронь */
+:root{
+  --linen:#f5ede1; --linen-2:#ece0cf; --paper:#fffaf2; --ink:#2b1d16; --muted:#6f5d50; --line:#dccbb6;
+  --terra:#c0502b; --terra-d:#9c3d1f; --olive:#66703f; --wine:#7a2335; --gold:#c9963e;
+  --wood-1:#7a4b30; --wood-2:#8b5838; --wood-3:#6c4029;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--linen);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(38px,5.4vw,64px);line-height:1}
+h2 em,h1 em{color:var(--terra);font-style:italic}
+.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:700}
+.head{display:grid;gap:14px;margin-bottom:40px;max-width:720px}
+.head p{margin:0;color:var(--muted);font-size:18px}
+section{padding-block:88px;scroll-margin-top:70px}
+
+/* шапка */
+header{position:fixed;inset:0 0 auto;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background .3s,box-shadow .3s}
+header.solid{background:color-mix(in srgb,var(--linen) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-size:30px;font-style:italic;font-weight:600;text-decoration:none;line-height:1}
+.logo small{font-family:var(--body);font-style:normal;font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-left:6px;color:var(--muted);font-weight:500}
+nav{display:flex;gap:26px;align-items:center}
+nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;border-radius:999px;padding:15px 26px;border:0;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-main{background:var(--terra);color:#fff;box-shadow:0 12px 28px -12px var(--terra)}
+.btn-main:hover{background:var(--terra-d);transform:translateY(-2px)}
+.btn-line{background:transparent;border:1.5px solid var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--linen)}
+.btn-sm{padding:10px 18px;font-size:15px}
+
+/* ГЕРОЙ: прокрутка накрывает стол */
+.feast{position:relative;height:420vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:40px;
+  padding:90px max(16px,calc((100vw - 1180px)/2)) 40px}
+.stage-text{position:relative;z-index:2;min-width:0}
+.stage h1{font-size:clamp(46px,7vw,96px);line-height:.92;margin:14px 0 22px}
+.dict{margin:0 0 18px;font-family:var(--display);font-size:20px;color:var(--muted)}
+.dict span{font-style:italic;color:var(--ink);font-weight:600}
+.dict i{font-size:16px}
+.caption{min-height:3.4em;font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:440px;margin:0 0 26px;transition:opacity .35s}
+.caption b{color:var(--ink);font-weight:700}
+.progress{display:flex;gap:6px;margin-bottom:26px}
+.progress i{height:3px;flex:0 0 34px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.progress i::after{content:"";position:absolute;inset:0;background:var(--terra);transform:scaleX(var(--f,0));transform-origin:left}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hint{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;color:var(--muted)}
+.hint i{width:18px;height:28px;border:1.5px solid var(--muted);border-radius:10px;position:relative}
+.hint i::after{content:"";position:absolute;left:50%;top:5px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:var(--muted);animation:wheel 1.6s infinite}
+@keyframes wheel{60%{transform:translateY(8px);opacity:0}100%{opacity:0}}
+
+.table{position:relative;width:min(100%,78vh);aspect-ratio:1;justify-self:center;border-radius:28px;
+  background:
+    linear-gradient(90deg,transparent 0 33%,rgba(0,0,0,.08) 33% calc(33% + 2px),transparent 0 66%,rgba(0,0,0,.08) 66% calc(66% + 2px),transparent 0),
+    repeating-linear-gradient(90deg,var(--wood-1) 0 3px,var(--wood-2) 3px 9px,var(--wood-1) 9px 11px,var(--wood-3) 11px 13px,var(--wood-2) 13px 22px);
+  box-shadow:0 40px 80px -30px rgba(60,30,10,.55),inset 0 0 0 10px rgba(0,0,0,.06)}
+.runner{position:absolute;left:39%;right:39%;top:-2%;bottom:-2%;background:
+    repeating-linear-gradient(90deg,var(--linen) 0 10px,#f0e3d0 10px 12px),var(--linen);
+  box-shadow:0 0 0 1px rgba(0,0,0,.05),0 8px 20px -10px rgba(0,0,0,.4)}
+.runner::before,.runner::after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,var(--terra) 0 6px,transparent 6px 10px)}
+.runner::before{top:9%}.runner::after{bottom:9%}
+.dish{position:absolute;padding:0;border:0;background:none;cursor:pointer;border-radius:50%;
+  left:calc(var(--x) * 1%);top:calc(var(--y) * 1%);width:calc(var(--s) * 1%);aspect-ratio:1;
+  translate:-50% -50%;will-change:transform,opacity;filter:drop-shadow(0 10px 12px rgba(40,18,6,.45))}
+.dish svg{width:100%;height:100%;display:block;transition:transform .3s}
+.dish:hover svg{transform:scale(1.04) rotate(-3deg)}
+.dish .tag{position:absolute;left:50%;bottom:-6%;translate:-50% 0;white-space:nowrap;background:var(--paper);color:var(--ink);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;box-shadow:0 6px 14px -6px rgba(0,0,0,.4);opacity:0;transition:opacity .3s}
+.dish.on .tag{opacity:1}
+.dish.decor{pointer-events:none}
+.dish.glass{z-index:3;transition:translate .25s cubic-bezier(.3,1.6,.5,1)}
+.dish.glass.clink:nth-of-type(odd){translate:-30% -50%}
+.dish.glass.clink:nth-of-type(even){translate:-70% -50%}
+.salute{position:absolute;left:50%;top:2%;translate:-50% -100%;background:var(--wine);color:#fff;font-family:var(--display);font-style:italic;font-size:22px;padding:4px 16px;border-radius:999px;opacity:0;transition:opacity .3s,translate .3s;pointer-events:none;z-index:4;white-space:nowrap}
+.salute.show{opacity:1;translate:-50% -10%}
+.dish.dragging{cursor:grabbing;z-index:5;filter:drop-shadow(0 22px 18px rgba(40,18,6,.45))}
+@media (pointer:fine){.dish.on{cursor:grab;touch-action:none}}
+
+/* карточка блюда */
+.sheet{position:fixed;inset:0;z-index:50;display:grid;place-items:end center;background:rgba(43,29,22,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.open{opacity:1;pointer-events:auto}
+.sheet-card{width:min(560px,100%);background:var(--paper);border-radius:28px 28px 0 0;padding:28px 24px calc(24px + env(safe-area-inset-bottom,0px));transform:translateY(40px);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:center}
+.sheet.open .sheet-card{transform:none}
+@media (min-width:700px){.sheet{place-items:center}.sheet-card{border-radius:28px}}
+.sheet-card h3{font-size:30px;line-height:1.05}
+.sheet-card p{margin:8px 0 14px;color:var(--muted);font-size:15px}
+.sheet-card .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.price{font-family:var(--display);font-size:28px;font-weight:600}
+.x{position:absolute;right:18px;top:16px;border:0;background:var(--linen);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.sheet-card{position:relative}
+
+/* меню */
+.menu-bg{background:var(--paper);border-block:1px solid var(--line)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tabs button{border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:9px 18px;cursor:pointer;font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--linen)}
+.menu-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 48px}
+.item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px dashed var(--line)}
+.item .pic{width:64px;height:64px;filter:drop-shadow(0 6px 8px rgba(40,18,6,.25))}
+.item h3{font-size:24px;line-height:1.1}
+.item p{margin:2px 0 0;color:var(--muted);font-size:14px;line-height:1.4}
+.item .side{display:grid;justify-items:end;gap:6px}
+.item .price{font-size:22px}
+.add{border:1.5px solid var(--terra);color:var(--terra);background:transparent;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.add:hover,.add.in{background:var(--terra);color:#fff}
+
+/* ужин на компанию */
+.party{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.bill{background:var(--paper);border-radius:24px;padding:28px;box-shadow:0 30px 60px -36px rgba(60,30,10,.45);position:relative}
+.bill::before{content:"";position:absolute;left:0;right:0;top:-10px;height:20px;background:radial-gradient(circle at 10px 0,transparent 9px,var(--paper) 10px) 0 0/20px 20px repeat-x}
+.bill h3{font-size:32px;margin-bottom:6px}
+.guests{display:flex;align-items:center;gap:14px;margin:18px 0 20px;padding:14px 16px;border-radius:16px;background:var(--linen)}
+.guests span{flex:1;font-weight:500}
+.step{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;cursor:pointer;font-size:20px;line-height:1}
+.guests output{font-family:var(--display);font-size:32px;font-weight:600;min-width:1.4em;text-align:center}
+.lines{list-style:none;margin:0;padding:0;display:grid;gap:10px;min-height:60px}
+.lines li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;font-size:15px}
+.lines li .q{display:flex;align-items:center;gap:6px}
+.lines li .q button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer}
+.empty{color:var(--muted);font-size:15px}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dashed var(--line);margin-top:18px;padding-top:16px}
+.total b{font-family:var(--display);font-size:38px;font-weight:600}
+.per{color:var(--muted);font-size:14px;margin:4px 0 20px}
+.bill .btn{width:100%}
+.party-side{display:grid;gap:18px}
+.party-side .auto{justify-self:start}
+.mini-table{position:relative;aspect-ratio:16/10;border-radius:22px;background:repeating-linear-gradient(90deg,var(--wood-1) 0 3px,var(--wood-2) 3px 9px,var(--wood-3) 9px 11px,var(--wood-2) 11px 20px);overflow:hidden;box-shadow:0 30px 60px -36px rgba(60,30,10,.6)}
+.seat{position:absolute;width:13%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:var(--paper);box-shadow:0 6px 10px -4px rgba(0,0,0,.5),inset 0 0 0 6px #efe5d6;transition:opacity .35s,scale .35s}
+.seat.off{opacity:0;scale:.6}
+
+/* поводы */
+.occasions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.occ{background:var(--paper);border-radius:22px;padding:24px;display:grid;gap:10px;align-content:start;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.occ:hover{transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(60,30,10,.5)}
+.occ .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--linen);font-size:26px}
+.occ h3{font-size:28px}
+.occ p{margin:0;color:var(--muted);font-size:15px}
+
+/* отзывы */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.quote{background:var(--paper);border-radius:22px;padding:28px;margin:0;display:grid;gap:14px;align-content:space-between}
+.quote blockquote{margin:0;font-family:var(--display);font-size:24px;line-height:1.25;font-style:italic}
+.quote figcaption{font-size:14px;color:var(--muted)}
+.quote.sample{border:1.5px dashed var(--line);background:transparent}
+.badge{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--olive);margin-left:6px}
+
+/* бронь */
+.book{background:var(--ink);color:var(--linen);border-radius:32px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px}
+.book h2 em{color:#f08a5d}
+.book .eyebrow{color:#c3cc8f}
+.book p{color:#cdbfb0}
+.info{display:grid;gap:14px;margin-top:28px;font-size:15px}
+.info div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px}
+.info span{color:#a8998b}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:grid;gap:6px;font-size:13px;color:#cdbfb0;font-weight:500}
+input,select,textarea{font:inherit;font-size:16px;color:var(--linen);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 14px;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#f08a5d}
+select option{color:var(--ink)}
+.full{grid-column:1/-1}
+textarea{resize:vertical;min-height:80px}
+.done{grid-column:1/-1;display:none;padding:18px;border-radius:16px;background:rgba(240,138,93,.15);color:var(--linen)}
+form.sent .done{display:block}
+
+footer{padding-block:48px 120px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.dock{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:none;transition:opacity .3s,translate .3s}
+.dock.away{opacity:0;translate:0 120%;pointer-events:none}
+.dock .btn{width:100%}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  nav a:not(.btn){display:none}
+  .stage{grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;padding-top:78px;padding-bottom:20px}
+  .stage .eyebrow,.dict{display:none}
+  .stage h1{font-size:clamp(38px,11vw,56px);margin:0 0 10px}
+  .caption{min-height:3.2em;margin-bottom:12px;font-size:16px}
+  .progress{margin-bottom:0}
+  .stage .ctas,.hint{display:none}
+  .table{width:min(100%,calc(100svh - 270px));min-width:260px;border-radius:22px}
+  .menu-list,.party,.book{grid-template-columns:minmax(0,1fr)}
+  .occasions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quotes{grid-template-columns:minmax(0,1fr)}
+  .dock{display:block}
+  section{padding-block:64px}
+}
+@media (max-width:520px){
+  .occasions{grid-template-columns:minmax(0,1fr)}
+  form{grid-template-columns:minmax(0,1fr)}
+  .item{grid-template-columns:52px minmax(0,1fr) auto;gap:12px}
+  .item .pic{width:52px;height:52px}
+  .sheet-card{grid-template-columns:84px minmax(0,1fr)}
+  .info div{grid-template-columns:90px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .hint i::after{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap">
+    <a class="logo" href="#top">ami<small>osteria</small></a>
+    <nav>
+      <a href="#menu">Меню</a>
+      <a href="#party">Ужин на компанию</a>
+      <a href="#occasions">Поводы</a>
+      <a href="#book">Контакты</a>
+      <a class="btn btn-main btn-sm" href="#book">Забронировать</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="feast" id="feast">
+    <div class="stage">
+      <div class="stage-text">
+        <span class="eyebrow">Итальянская остерия · Ростов-на-Дону</span>
+        <h1>Ami значит <em>«друзья»</em></h1>
+        <p class="dict"><span>ami</span> /ˈa.mi/ <i>итал., мн. ч.</i> — друзья; те, с кем делят стол.</p>
+        <p class="caption" id="caption">Стол уже накрыт. Осталось позвать друзей.</p>
+        <div class="progress" id="progress"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="ctas" style="margin-top:26px">
+          <a class="btn btn-main" href="#book">Забронировать стол</a>
+          <a class="btn btn-line" href="#menu">Смотреть меню</a>
+        </div>
+        <div class="hint"><i></i>Листайте, стол накрывается</div>
+      </div>
+      <div class="table" id="table" aria-label="Стол сверху: нажмите на блюдо, чтобы узнать о нём">
+        <div class="runner"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="menu-bg" id="menu">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Меню</span>
+        <h2>Паста ручной работы и <em>всё, что к ней</em></h2>
+        <p>Отмечайте блюда, и мы сразу посчитаем ужин на вашу компанию.</p>
+      </div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="menu-list" id="menuList"></div>
+    </div>
+  </section>
+
+  <section id="party">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Ужин на компанию</span>
+        <h2>Сколько вас? <em>Остальное соберём</em></h2>
+        <p>Выберите число гостей, и мы предложим стол. Счёт видно сразу, без сюрпризов.</p>
+      </div>
+      <div class="party">
+        <div class="party-side reveal">
+          <div class="mini-table" id="miniTable" aria-hidden="true"></div>
+          <button class="btn btn-line auto" id="auto" type="button">Подобрать ужин за меня</button>
+        </div>
+        <div class="bill reveal">
+          <h3>Ваш стол</h3>
+          <div class="guests">
+            <span>Гостей</span>
+            <button class="step" type="button" data-d="-1" aria-label="Меньше гостей">−</button>
+            <output id="gCount">4</output>
+            <button class="step" type="button" data-d="1" aria-label="Больше гостей">+</button>
+          </div>
+          <ul class="lines" id="lines"></ul>
+          <div class="total"><span>Примерно</span><b id="sum">0 ₽</b></div>
+          <div class="per" id="per">Добавьте блюда из меню или нажмите «Подобрать».</div>
+          <a class="btn btn-main" href="#book" id="bookParty">Забронировать стол на 4</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="occasions" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Поводы</span>
+        <h2>Повод найдётся <em>всегда</em></h2>
+      </div>
+      <div class="occasions">
+        <article class="occ reveal"><div class="ic">🕯️</div><h3>Свидание</h3><p>Тихий столик на двоих, бокал вина и чизкейк на одной тарелке.</p></article>
+        <article class="occ reveal"><div class="ic">🎂</div><h3>День рождения</h3><p>Стол на компанию, торт от наших кондитеров и свеча в равиоли, если захотите.</p></article>
+        <article class="occ reveal"><div class="ic">⏱️</div><h3>Обед в будни</h3><p>Паста al dente без долгого ожидания. Успеете вернуться к делам.</p></article>
+        <article class="occ reveal"><div class="ic">🌿</div><h3>Веранда</h3><p>Летом ужинаем на улице, почти как в итальянском переулке.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Гости о нас</span>
+        <h2>Возвращаются <em>за равиоли</em></h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal"><blockquote>«Равиоли с креветкой стали моим любимым блюдом, а паста приготовлена al dente».</blockquote><figcaption>Пересказ читательского отзыва, журнал «Т—Ж», 2025</figcaption></figure>
+        <figure class="quote sample reveal"><blockquote>Здесь будет отзыв гостя с Яндекс Карт.</blockquote><figcaption>Место для отзыва<span class="badge">пример</span></figcaption></figure>
+        <figure class="quote sample reveal"><blockquote>Здесь будет отзыв гостя из 2ГИС или Instagram.</blockquote><figcaption>Место для отзыва<span class="badge">пример</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" style="padding-top:0">
+    <div class="wrap">
+      <div class="book reveal">
+        <div>
+          <span class="eyebrow">Бронь</span>
+          <h2 style="margin-top:12px">Оставим для вас <em>стол</em></h2>
+          <p>Администратор перезвонит или напишет, чтобы подтвердить бронь.</p>
+          <div class="info">
+            <div><span>Адрес</span>Ростов-на-Дону, ул. Пушкинская, 121</div>
+            <div><span>Часы</span>уточним у ресторана</div>
+            <div><span>Телефон</span>+7 (000) 000-00-00</div>
+            <div><span>Instagram</span><a href="https://www.instagram.com/ami.osteria" target="_blank" rel="noopener">@ami.osteria</a></div>
+          </div>
+        </div>
+        <form id="form" novalidate>
+          <label class="full">Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться"></label>
+          <label>Телефон<input name="phone" type="tel" autocomplete="tel" placeholder="+7"></label>
+          <label>Гостей<input name="guests" id="fGuests" type="number" min="1" max="30" value="4"></label>
+          <label>Дата<input name="date" id="fDate" type="date"></label>
+          <label>Время<select name="time" id="fTime"></select></label>
+          <label class="full">Пожелания<textarea name="note" id="fNote" placeholder="Повод, столик на веранде, детский стул"></textarea></label>
+          <button class="btn btn-main full" type="submit">Забронировать</button>
+          <div class="done" role="status">Спасибо! Заявка принята. В рабочей версии она сразу придёт администратору в Telegram.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b style="font-family:var(--display);font-style:italic;font-size:20px;color:var(--ink)">ami</b> osteria · Ростов-на-Дону</span>
+    <span>Набросок сайта. Часть блюд и цен примерные, заменим на актуальное меню.</span>
+  </div>
+</footer>
+
+<div class="dock"><a class="btn btn-main" href="#book">Забронировать стол</a></div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sTitle">
+    <button class="x" id="sClose" aria-label="Закрыть">×</button>
+    <div id="sPic"></div>
+    <div>
+      <h3 id="sTitle"></h3>
+      <p id="sDesc"></p>
+      <div class="row"><span class="price" id="sPrice"></span><button class="add" id="sAdd" type="button">В ужин +</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- рисунки блюд (вид сверху) ---------- */
+const plate = (inner, r=96) => `<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="${r}" fill="#fbf7ef"/><circle cx="100" cy="100" r="${r-18}" fill="#f6f0e4" stroke="#e8ddcb" stroke-width="2"/>${inner}</svg>`;
+const ART = {
+  ravioli: plate(`<path d="M52 108c10-26 76-34 96-8 8 20-20 44-50 42s-52-14-46-34z" fill="#f4e2bf"/>
+    ${[[70,86,-12],[104,78,8],[128,104,-6],[86,118,14],[112,128,-18]].map(([x,y,a])=>`<g transform="translate(${x} ${y}) rotate(${a})"><rect x="-17" y="-17" width="34" height="34" rx="6" fill="#f1cf86" stroke="#d6aa58" stroke-width="3" stroke-dasharray="3 3"/><rect x="-9" y="-9" width="18" height="18" rx="7" fill="#f6dc9d"/></g>`).join('')}
+    <path d="M96 96c8-10 22-6 22 4-4-4-12-6-16 0z" fill="#ee8758"/><path d="M68 104c6-8 18-6 18 2-4-3-9-4-13 1z" fill="#ee8758"/><path d="M118 120c6-8 18-6 18 2-4-3-9-4-13 1z" fill="#ee8758"/>
+    ${[[80,70],[132,90],[96,140],[60,124],[140,128],[110,104]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="4" ry="2" fill="#5f7a33" transform="rotate(30 ${x} ${y})"/>`).join('')}`),
+  fettuccine: plate(`${[34,28,22,16,10].map((r,i)=>`<circle cx="100" cy="100" r="${r+10}" fill="none" stroke="${i%2?'#e9be5c':'#f3d17c'}" stroke-width="9" stroke-dasharray="${40+i*6} 6" transform="rotate(${i*37} 100 100)"/>`).join('')}
+    <circle cx="100" cy="100" r="9" fill="#f3d17c"/>
+    <rect x="70" y="66" width="22" height="12" rx="5" fill="#f2997b" transform="rotate(-20 81 72)"/><rect x="112" y="118" width="22" height="12" rx="5" fill="#f2997b" transform="rotate(25 123 124)"/><rect x="118" y="74" width="18" height="10" rx="5" fill="#f2997b"/>
+    <circle cx="80" cy="122" r="6" fill="#3a3527"/><circle cx="130" cy="98" r="5" fill="#3a3527"/><circle cx="92" cy="86" r="5" fill="#a83420"/><circle cx="114" cy="138" r="6" fill="#a83420"/>
+    ${[[100,62],[70,100],[136,132]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="5" ry="2" fill="#5f7a33"/>`).join('')}`),
+  burrata: plate(`${[[64,84,'#c8361f'],[78,130,'#e9a92c'],[132,70,'#e9a92c'],[140,118,'#c8361f'],[104,148,'#c8361f']].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="15" fill="${c}"/><circle cx="${x}" cy="${y}" r="9" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>`).join('')}
+    <circle cx="100" cy="100" r="30" fill="#fffdf8"/><circle cx="100" cy="100" r="30" fill="none" stroke="#efe6d6" stroke-width="3"/><path d="M90 92c6-6 18-6 22 2" stroke="#f1eadc" stroke-width="4" fill="none"/>
+    <path d="M94 66c10-10 26-4 22 8-10 4-20 2-22-8z" fill="#4f7a2c"/><path d="M60 110c-6-10 4-22 14-16-2 10-6 16-14 16z" fill="#4f7a2c"/>
+    <circle cx="112" cy="108" r="3" fill="#c9a43a" opacity=".8"/><circle cx="92" cy="112" r="2.5" fill="#c9a43a" opacity=".8"/>`),
+  cheesecake: plate(`<path d="M58 132 142 132 104 58z" fill="#3a2018"/><path d="M58 132 142 132 104 58z" fill="none" stroke="#2a150f" stroke-width="3"/>
+    <path d="M70 124 132 124 104 74z" fill="#5a3022"/>
+    <path d="M78 118c10-6 40-6 50 0" stroke="#f2e4cf" stroke-width="7" stroke-linecap="round" fill="none"/>
+    ${[[90,104],[112,100],[102,86]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="#8e1b2b"/><circle cx="${x-3}" cy="${y-3}" r="2.5" fill="#d36a78"/>`).join('')}
+    <path d="M140 64c-10 6-14 14-12 22" stroke="#6b2a1c" stroke-width="2" fill="none"/><circle cx="146" cy="76" r="5" fill="#8e1b2b"/>`, 90),
+  lemon: plate(`<circle cx="100" cy="100" r="48" fill="#d9a65a"/><circle cx="100" cy="100" r="40" fill="#f6d54a"/>
+    ${[0,60,120,180,240,300].map(a=>`<g transform="rotate(${a} 100 100)"><path d="M100 72c8 4 8 14 0 18-8-4-8-14 0-18z" fill="#fffaf0"/></g>`).join('')}<circle cx="100" cy="100" r="8" fill="#fffaf0"/>`, 90),
+  cappuccino: `<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="84" fill="#fbf7ef"/><circle cx="100" cy="100" r="66" fill="#f3ecdf"/><rect x="146" y="90" width="34" height="20" rx="10" fill="#fffdf8" stroke="#e8ddcb" stroke-width="2"/><circle cx="100" cy="100" r="56" fill="#fffdf8" stroke="#e8ddcb" stroke-width="2"/><circle cx="100" cy="100" r="46" fill="#a86f42"/><circle cx="100" cy="100" r="40" fill="#c58d5b"/><path d="M100 124c-26-16-26-38-12-40 6 0 10 4 12 8 2-4 6-8 12-8 14 2 14 24-12 40z" fill="#f6e7cf"/><rect x="34" y="150" width="34" height="8" rx="4" fill="#cfc2ad" transform="rotate(-30 51 154)"/></svg>`,
+  wine: `<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="80" fill="rgba(255,255,255,.35)" stroke="rgba(255,255,255,.8)" stroke-width="5"/><circle cx="100" cy="100" r="58" fill="#7a2335"/><ellipse cx="82" cy="78" rx="18" ry="10" fill="rgba(255,255,255,.35)" transform="rotate(-30 82 78)"/></svg>`,
+  bread: `<svg viewBox="0 0 200 200" aria-hidden="true"><rect x="16" y="40" width="168" height="120" rx="22" fill="#c48a52"/><rect x="16" y="40" width="168" height="120" rx="22" fill="none" stroke="#a46d3c" stroke-width="4"/><ellipse cx="80" cy="100" rx="46" ry="38" fill="#e3b46a"/>${[[66,88],[90,84],[78,112],[100,108],[60,110]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#c58c3e"/>`).join('')}<path d="M70 96l20-6M84 118l18-4" stroke="#4f7a2c" stroke-width="3" stroke-linecap="round"/><circle cx="146" cy="100" r="24" fill="#fbf7ef"/>${[[138,94],[152,92],[146,108],[136,106],[156,106]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="6" ry="5" fill="#6b7a2f"/>`).join('')}</svg>`,
+  tiramisu: plate(`<rect x="58" y="62" width="84" height="76" rx="8" fill="#e7d3b6"/><rect x="58" y="62" width="84" height="76" rx="8" fill="url(#cocoa)"/><defs><pattern id="cocoa" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#7a4a2c"/><circle cx="2" cy="2" r="1.2" fill="#5a3320"/></pattern></defs><path d="M120 62l22 20" stroke="#fbf7ef" stroke-width="3"/>`, 90),
+  carbonara: plate(`${[30,22,14].map((r,i)=>`<circle cx="100" cy="100" r="${r+10}" fill="none" stroke="#f2df9e" stroke-width="8" stroke-dasharray="${36+i*8} 5" transform="rotate(${i*50} 100 100)"/>`).join('')}<circle cx="100" cy="100" r="13" fill="#f5b631"/><circle cx="100" cy="100" r="7" fill="#f0a019"/>${[[70,80],[128,82],[76,126],[126,124],[100,64]].map(([x,y])=>`<rect x="${x-7}" y="${y-4}" width="14" height="8" rx="3" fill="#b55a3c"/>`).join('')}${Array.from({length:14},(_,i)=>`<circle cx="${70+((i*37)%62)}" cy="${70+((i*53)%62)}" r="1.5" fill="#3a3527"/>`).join('')}`),
+  ragu: plate(`${[30,22,14].map((r,i)=>`<circle cx="100" cy="100" r="${r+10}" fill="none" stroke="#efc46a" stroke-width="13" stroke-dasharray="${44+i*8} 6" transform="rotate(${i*40} 100 100)"/>`).join('')}<path d="M80 92c10-16 34-14 40 2 4 14-14 24-26 20s-20-10-14-22z" fill="#8a3420"/>${[[92,96],[106,102],[98,108]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#6b2614"/>`).join('')}<path d="M86 80c6-2 14 0 16 4" stroke="#f4efe2" stroke-width="5" stroke-linecap="round"/>`),
+  bruschetta: plate(`${[[72,86,-14],[118,112,12]].map(([x,y,a])=>`<g transform="rotate(${a} ${x} ${y})"><rect x="${x-34}" y="${y-18}" width="68" height="36" rx="12" fill="#d79a52"/><rect x="${x-28}" y="${y-12}" width="56" height="24" rx="8" fill="#9c4a3a"/><path d="M${x-22} ${y}c10-8 20 8 30 0s12-4 16 0" stroke="#e7b8a8" stroke-width="4" fill="none"/><circle cx="${x+14}" cy="${y-4}" r="3" fill="#5f7a33"/></g>`).join('')}`),
+  focaccia: `<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="86" fill="#c48a52"/><rect x="40" y="48" width="120" height="104" rx="26" fill="#e3b46a"/>${[[66,76],[100,70],[132,80],[70,118],[104,112],[134,124],[86,96],[118,98]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6" fill="#c58c3e"/>`).join('')}<path d="M70 92l12-10M110 128l14-10M118 76l10 10" stroke="#4f7a2c" stroke-width="3" stroke-linecap="round"/></svg>`,
+  affogato: `<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="78" fill="#fbf7ef"/><circle cx="100" cy="100" r="62" fill="rgba(255,255,255,.6)" stroke="#e8ddcb" stroke-width="3"/><circle cx="100" cy="100" r="52" fill="#5b3420"/><circle cx="96" cy="96" r="30" fill="#fbf2df"/><path d="M80 96c10 14 28 12 34-4" stroke="#8a5434" stroke-width="5" fill="none" opacity=".7"/></svg>`
+};
+
+/* ---------- меню (цены с пометкой * — примерные) ---------- */
+const MENU = [
+  {id:'ravioli', cat:'Паста', name:'Равиоли с креветкой', desc:'Тонкое тесто ручной лепки, сливочный соус, креветка.', price:560, art:'ravioli'},
+  {id:'fettuccine', cat:'Паста', name:'Фетучини с форелью', desc:'Форель, оливки и вяленые томаты, паста al dente.', price:620, art:'fettuccine'},
+  {id:'carbonara', cat:'Паста', name:'Карбонара', desc:'Гуанчиале, желток, пекорино и чёрный перец.', price:540, art:'carbonara', sample:true},
+  {id:'ragu', cat:'Паста', name:'Паппарделле с рагу', desc:'Широкая лента, томлёная говядина, пармезан.', price:590, art:'ragu', sample:true},
+  {id:'burrata', cat:'Закуски', name:'Буррата с томатами', desc:'Сливочная буррата, томаты, базилик, оливковое масло.', price:690, art:'burrata', sample:true},
+  {id:'bruschetta', cat:'Закуски', name:'Брускетта с ростбифом', desc:'Хрустящий хлеб, ростбиф, соус из пармезана.', price:420, art:'bruschetta', sample:true},
+  {id:'focaccia', cat:'Закуски', name:'Фокачча с розмарином', desc:'Тёплая, к пасте и к вину.', price:250, art:'focaccia', sample:true},
+  {id:'cheesecake', cat:'Десерты', name:'Чизкейк «Чёрный лес»', desc:'Шоколадный крем и вишня.', price:420, art:'cheesecake'},
+  {id:'lemon', cat:'Десерты', name:'Лимонный торт', desc:'Яркий лимонный крем и меренга.', price:350, art:'lemon'},
+  {id:'tiramisu', cat:'Десерты', name:'Тирамису', desc:'Савоярди, маскарпоне, эспрессо и какао.', price:390, art:'tiramisu', sample:true},
+  {id:'cappuccino', cat:'Кофе и вино', name:'Капучино', desc:'Классика к десерту.', price:230, art:'cappuccino'},
+  {id:'affogato', cat:'Кофе и вино', name:'Аффогато', desc:'Шарик джелато, залитый эспрессо.', price:290, art:'affogato', sample:true},
+  {id:'wine', cat:'Кофе и вино', name:'Бокал вина', desc:'Итальянское красное или белое.', price:450, art:'wine', sample:true}
+];
+const byId = Object.fromEntries(MENU.map(m=>[m.id,m]));
+const rub = n => n.toLocaleString('ru-RU') + ' ₽';
+
+/* ---------- стол в герое ---------- */
+const TABLE = [
+  {art:'wine', x:42, y:12, s:12, glass:true},
+  {art:'wine', x:58, y:12, s:12, glass:true},
+  {art:'bread', x:50, y:88, s:22, decor:true},
+  {id:'ravioli', x:24, y:26, s:36, cap:'<b>Равиоли с креветкой.</b> Их хвалят чаще всего.'},
+  {id:'fettuccine', x:76, y:28, s:36, cap:'<b>Фетучини с форелью.</b> Al dente, как в Италии.'},
+  {id:'burrata', x:50, y:52, s:30, cap:'<b>Буррата на всех,</b> пока ждёте горячее.'},
+  {id:'cheesecake', x:24, y:76, s:30, cap:'<b>Чизкейк «Чёрный лес».</b> Шоколад и вишня.'},
+  {id:'cappuccino', x:77, y:75, s:25, cap:'<b>И капучино,</b> чтобы не расходиться. Нажмите на блюдо, подвиньте тарелку или чокнитесь бокалами.'}
+];
+const table = document.getElementById('table');
+const moving = [];
+TABLE.forEach(t=>{
+  const b = document.createElement(t.decor ? 'div' : 'button');
+  b.className = 'dish' + (t.decor ? ' decor' : '') + (t.glass ? ' glass' : '');
+  if(t.glass){ b.type='button'; b.setAttribute('aria-label','Чокнуться'); b.onclick=clink; }
+  b.style.cssText = `--x:${t.x};--y:${t.y};--s:${t.s}`;
+  b.innerHTML = ART[t.art || byId[t.id].art] + (t.id ? `<span class="tag">${rub(byId[t.id].price)}</span>` : '');
+  if(t.id){ b.type='button'; b.setAttribute('aria-label', byId[t.id].name); b.onclick=()=>openSheet(t.id); moving.push({el:b, ...t}); }
+  table.appendChild(b);
+});
+
+const salute = Object.assign(document.createElement('div'), {className:'salute', textContent:'Salute!'});
+table.appendChild(salute);
+function clink(){
+  const gs = table.querySelectorAll('.glass');
+  gs.forEach(g=>g.classList.add('clink')); salute.classList.add('show');
+  setTimeout(()=>{ gs.forEach(g=>g.classList.remove('clink')); }, 260);
+  setTimeout(()=>salute.classList.remove('show'), 1400);
+}
+
+/* блюда, которые уже на столе, можно двигать пальцем или мышью */
+moving.forEach(m=>{
+  let sx = null, sy, ox, oy, moved = false;
+  m.el.addEventListener('pointerdown', e=>{
+    if(!m.el.classList.contains('on')) return;
+    sx = e.clientX; sy = e.clientY; ox = m.x; oy = m.y; moved = false;
+    m.el.setPointerCapture(e.pointerId);
+  });
+  m.el.addEventListener('pointermove', e=>{
+    if(sx == null) return;
+    const w = table.clientWidth, dx = e.clientX - sx, dy = e.clientY - sy;
+    if(!moved && Math.hypot(dx, dy) < 6) return;
+    moved = true; m.el.classList.add('dragging');
+    m.x = Math.min(92, Math.max(8, ox + dx / w * 100)); m.y = Math.min(92, Math.max(8, oy + dy / w * 100));
+    m.el.style.setProperty('--x', m.x); m.el.style.setProperty('--y', m.y);
+  });
+  const end = ()=>{ sx = null; m.el.classList.remove('dragging'); };
+  m.el.addEventListener('pointerup', end); m.el.addEventListener('pointercancel', end);
+  m.el.addEventListener('click', e=>{ if(moved){ e.stopImmediatePropagation(); e.preventDefault(); moved = false; } }, true);
+});
+
+const feast = document.getElementById('feast');
+const caption = document.getElementById('caption');
+const bars = [...document.querySelectorAll('#progress i')];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ease = t => 1 - Math.pow(1 - t, 3);
+const startCap = caption.innerHTML;
+let lastCap = -1;
+function onScroll(){
+  const r = feast.getBoundingClientRect();
+  const total = feast.offsetHeight - innerHeight;
+  const p = reduce ? 1 : Math.min(1, Math.max(0, -r.top / (total * .85)));
+  const N = moving.length;
+  let stage = -1;
+  moving.forEach((m,i)=>{
+    const t = Math.min(1, Math.max(0, p * N - i));
+    const e = ease(t);
+    const dx = (m.x - 50) / 50, dy = (m.y - 50) / 50;
+    const k = (1 - e);
+    m.el.style.transform = `translate(${dx*260*k}%, ${dy*260*k - 0}%) rotate(${(i%2?1:-1)*80*k}deg) scale(${.85+.15*e})`;
+    m.el.style.opacity = Math.min(1, t * 2.2);
+    m.el.classList.toggle('on', t >= 1);
+    bars[i].style.setProperty('--f', t);
+    if(t > .35) stage = i;
+  });
+  if(stage !== lastCap){
+    lastCap = stage;
+    caption.style.opacity = 0;
+    setTimeout(()=>{ caption.innerHTML = stage < 0 ? startCap : moving[stage].cap; caption.style.opacity = 1; }, 160);
+  }
+  document.querySelector('.dock').classList.toggle('away', r.bottom > innerHeight * .4 || document.getElementById('book').getBoundingClientRect().top < innerHeight * .7);
+  document.querySelector('header').classList.toggle('solid', scrollY > 40 && r.bottom < innerHeight * .6 || scrollY > feast.offsetHeight - innerHeight);
+}
+addEventListener('scroll', ()=>requestAnimationFrame(onScroll), {passive:true});
+addEventListener('resize', onScroll);
+onScroll();
+
+/* ---------- карточка блюда ---------- */
+const sheet = document.getElementById('sheet');
+let sheetId = null, lastFocus = null;
+function openSheet(id){
+  const m = byId[id]; sheetId = id; lastFocus = document.activeElement;
+  document.getElementById('sPic').innerHTML = ART[m.art];
+  document.getElementById('sTitle').textContent = m.name;
+  document.getElementById('sDesc').textContent = m.desc;
+  document.getElementById('sPrice').textContent = rub(m.price);
+  syncAddBtn();
+  sheet.classList.add('open'); sheet.setAttribute('aria-hidden','false');
+  document.getElementById('sClose').focus();
+}
+function closeSheet(){ sheet.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); lastFocus && lastFocus.focus(); }
+function syncAddBtn(){ const b=document.getElementById('sAdd'); const q=cart[sheetId]||0; b.textContent = q ? `В ужине: ${q} · ещё +` : 'В ужин +'; b.classList.toggle('in', !!q); }
+document.getElementById('sClose').onclick = closeSheet;
+sheet.addEventListener('click', e=>{ if(e.target === sheet) closeSheet(); });
+addEventListener('keydown', e=>{ if(e.key === 'Escape' && sheet.classList.contains('open')) closeSheet(); });
+document.getElementById('sAdd').onclick = ()=>{ add(sheetId, 1); syncAddBtn(); };
+
+/* ---------- меню с вкладками ---------- */
+const cats = [...new Set(MENU.map(m=>m.cat))];
+const tabs = document.getElementById('tabs');
+const list = document.getElementById('menuList');
+let cat = cats[0];
+function renderMenu(){
+  tabs.innerHTML = cats.map(c=>`<button role="tab" aria-selected="${c===cat}" data-c="${c}">${c}</button>`).join('');
+  list.innerHTML = MENU.filter(m=>m.cat===cat).map(m=>`
+    <div class="item">
+      <div class="pic">${ART[m.art]}</div>
+      <div><h3>${m.name}</h3><p>${m.desc}</p></div>
+      <div class="side"><span class="price">${rub(m.price)}</span><button class="add ${cart[m.id]?'in':''}" data-id="${m.id}" type="button">${cart[m.id] ? '× ' + cart[m.id] : 'В ужин +'}</button></div>
+    </div>`).join('');
+}
+tabs.addEventListener('click', e=>{ const c=e.target.dataset.c; if(c){ cat=c; renderMenu(); } });
+list.addEventListener('click', e=>{ const id=e.target.dataset.id; if(id) add(id, 1); });
+
+/* ---------- ужин на компанию ---------- */
+const cart = {};
+let guests = 4;
+function add(id, d){ cart[id] = Math.max(0, (cart[id]||0) + d); if(!cart[id]) delete cart[id]; renderAll(); }
+function renderBill(){
+  const ids = Object.keys(cart);
+  const lines = document.getElementById('lines');
+  lines.innerHTML = ids.length ? ids.map(id=>`<li><span>${byId[id].name}</span><span class="q"><button data-id="${id}" data-d="-1" aria-label="Убрать">−</button>${cart[id]}<button data-id="${id}" data-d="1" aria-label="Добавить">+</button></span><span>${rub(byId[id].price*cart[id])}</span></li>`).join('')
+    : '<li class="empty">Пока пусто. Отмечайте блюда в меню или на столе.</li>';
+  const sum = ids.reduce((s,id)=>s + byId[id].price*cart[id], 0);
+  document.getElementById('sum').textContent = rub(sum);
+  document.getElementById('per').textContent = sum ? `≈ ${rub(Math.round(sum/guests/10)*10)} на человека` : 'Добавьте блюда из меню или нажмите «Подобрать».';
+  document.getElementById('gCount').textContent = guests;
+  document.getElementById('bookParty').textContent = `Забронировать стол на ${guests}`;
+  document.querySelectorAll('.seat').forEach((s,i)=>s.classList.toggle('off', i >= guests));
+}
+document.getElementById('lines').addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) add(b.dataset.id, +b.dataset.d); });
+document.querySelectorAll('.guests .step').forEach(b=>b.onclick=()=>{ guests = Math.min(12, Math.max(1, guests + +b.dataset.d)); renderBill(); });
+document.getElementById('auto').onclick = ()=>{
+  Object.keys(cart).forEach(k=>delete cart[k]);
+  const pastas = ['ravioli','fettuccine','carbonara','ragu'];
+  for(let i=0;i<guests;i++) cart[pastas[i%4]] = (cart[pastas[i%4]]||0)+1;
+  cart.burrata = Math.ceil(guests/3);
+  cart.focaccia = Math.ceil(guests/4);
+  cart.cheesecake = Math.ceil(guests/2);
+  cart.lemon = Math.floor(guests/2) || undefined; if(!cart.lemon) delete cart.lemon;
+  cart.cappuccino = guests;
+  renderAll();
+};
+document.getElementById('bookParty').addEventListener('click', ()=>{
+  document.getElementById('fGuests').value = guests;
+  const ids = Object.keys(cart);
+  if(ids.length) document.getElementById('fNote').value = 'Хотим заранее: ' + ids.map(id=>`${byId[id].name} × ${cart[id]}`).join(', ');
+});
+
+/* мини-стол с местами (до 12) */
+const mini = document.getElementById('miniTable');
+const seats = [[22,26],[78,74],[78,26],[22,74],[50,26],[50,74],[36,26],[64,74],[64,26],[36,74],[9,50],[91,50]];
+mini.innerHTML = seats.map(([x,y])=>`<i class="seat" style="left:${x}%;top:${y}%"></i>`).join('');
+
+function renderAll(){ renderMenu(); renderBill(); if(sheet.classList.contains('open')) syncAddBtn(); }
+renderAll();
+
+/* ---------- бронь ---------- */
+const fTime = document.getElementById('fTime');
+for(let h=12; h<=22; h++) for(const m of ['00','30']) fTime.insertAdjacentHTML('beforeend', `<option${h===19&&m==='00'?' selected':''}>${h}:${m}</option>`);
+document.getElementById('fDate').valueAsDate = new Date();
+document.getElementById('form').addEventListener('submit', e=>{ e.preventDefault(); e.target.classList.add('sent'); });
+
+/* ---------- появление блоков ---------- */
+const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
