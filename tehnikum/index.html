@@ -218,7 +218,7 @@ form.book.sent .done{display:block}
 .chips a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(27,20,17,.08);text-decoration:none;font-weight:600;font-size:15px}
 .chips a:hover{background:rgba(27,20,17,.14)}
 @media (max-width:900px){.visit-grid{grid-template-columns:1fr;gap:36px}.facade{max-width:460px;width:100%}}
-@media (max-width:420px){form.book{grid-template-columns:1fr;padding:16px}}
+@media (max-width:420px){form.book{grid-template-columns:1fr;padding:16px}.chiprow.scroll{margin-inline:-16px;padding-inline:16px}}
 
 footer{background:var(--night);padding:46px 0 calc(110px + env(safe-area-inset-bottom,0px));font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
@@ -230,6 +230,91 @@ footer img{width:140px;opacity:.9}
 .dock .btn{flex:1;min-height:50px}
 @media (max-width:900px){.dock{display:flex}}
 @media (min-width:901px){footer{padding-bottom:46px}}
+
+/* ===== форма: чипы ===== */
+form.book .grp{display:grid;gap:8px}
+form.book .gl{font-size:13px;font-weight:600;color:#5b5049}
+.chiprow{display:flex;gap:6px;flex-wrap:wrap}
+.chiprow.scroll{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-22px;padding:2px 22px;scroll-padding-inline:22px}
+.chiprow.scroll::-webkit-scrollbar{display:none}
+.chiprow button{flex:none;min-height:44px;padding:0 14px;border:1px solid #d9d2c8;background:#faf8f4;cursor:pointer;font-weight:600;font-size:15px;color:var(--ink);line-height:1.15}
+.chiprow button small{display:block;font-size:11px;font-weight:500;color:#7a6756}
+.chiprow button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chiprow button[aria-pressed="true"] small{color:#d8cbb6}
+.other-date{margin-top:4px}
+form.book .err{outline:2px solid var(--red)!important}
+
+/* ===== окно брони ===== */
+html.locked{overflow:hidden}
+dialog.sheet{padding:0;border:0;width:min(520px,100%);max-width:100%;max-height:min(760px,92vh);background:#fff;color:var(--ink);overflow:hidden;display:none;flex-direction:column}
+dialog.sheet[open]{display:flex;animation:pop .28s cubic-bezier(.2,.8,.2,1)}
+dialog.sheet::backdrop{background:rgba(12,8,6,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.sheet-head{display:flex;align-items:center;gap:12px;padding:18px 22px 14px;border-bottom:1px solid #eee5d8;position:relative}
+.sheet-head b{display:block;font-family:var(--display);font-size:20px;letter-spacing:-.01em}
+.sheet-head small{display:block;font-size:13px;color:#7a6756;margin-top:2px}
+.sheet-head .x{margin-left:auto;width:40px;height:40px;flex:none;border:0;background:#f3ede4;cursor:pointer;font-size:16px;color:var(--ink)}
+.sheet-head .grab{display:none}
+.sheet-body{overflow-y:auto;overscroll-behavior:contain}
+.sheet-body form.book{box-shadow:none;padding:18px 22px calc(22px + env(safe-area-inset-bottom,0px))}
+@media (max-width:700px){
+  dialog.sheet{width:100%;margin:auto 0 0;max-height:92vh;max-height:92dvh;border-radius:20px 20px 0 0}
+  dialog.sheet[open]{animation:up .34s cubic-bezier(.2,.8,.2,1)}
+  .sheet-head{padding:22px 16px 12px}
+  .sheet-head .grab{display:block;position:absolute;top:8px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:4px;background:#ddd2c2}
+  .sheet-body form.book{padding:16px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+  .chiprow.scroll{margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}
+}
+@media (max-width:360px){.open-pill{display:none}.logo{flex:none;width:104px;margin-right:auto}.sheet-head b{font-size:17px}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+
+/* ===== телефон ===== */
+@media (max-width:900px){
+  header .btn.hbook{display:inline-flex;min-height:38px;padding:0 14px;font-size:14px}
+  header .wrap{gap:10px}
+}
+@media (max-width:700px){
+  .logo{width:112px}
+  .open-pill{padding:6px 10px;font-size:12px}
+  .open-pill .lg{display:none}
+  section{scroll-margin-top:60px}
+  #mosaic{height:380vh}
+  .cap h1,.cap h2{font-size:clamp(28px,8.6vw,40px)}
+  .cap p{font-size:15px;margin-top:10px}
+  .cap .cta{flex-wrap:nowrap}.cap .cta .btn{flex:1;padding:0 12px;white-space:nowrap}.cap .cta .btn.ghost{flex:none;padding:0 18px}
+  .manifest,.hits,.menu,.bar,.day,.room{padding:68px 0}
+  .visit{padding:76px 0 72px}
+  .manifest .big{font-size:24px;line-height:1.15}
+  .sec-head{margin-bottom:24px}
+  h2{font-size:clamp(28px,8.4vw,40px)}
+  /* карусели вместо сеток */
+  .facts,.flipgrid,.timeline{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin-inline:-16px;padding:0 16px 8px;scroll-padding-inline:16px;scrollbar-width:none}
+  .facts::-webkit-scrollbar,.flipgrid::-webkit-scrollbar,.timeline::-webkit-scrollbar{display:none}
+  .facts>*,.flipgrid>*,.timeline>*{flex:0 0 76%;scroll-snap-align:start}
+  .facts{margin-top:36px}.fact{min-height:170px}
+  .flip{min-height:400px}
+  .face.front h3{font-size:18px}.face.front .turn{display:grid}
+  .face.back{padding:22px 20px}.face.back h3{font-size:22px}.face.back p{font-size:15px}.face.back .p{font-size:28px}
+  .timeline{margin-top:28px}.slot{min-height:210px}
+  .swipe-hint{display:flex}
+  /* меню: вкладки липнут под шапкой и листаются */
+  .tabs{position:sticky;top:58px;z-index:5;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:24px -16px 18px;padding:10px 16px;background:var(--cream);box-shadow:0 8px 12px -12px rgba(0,0,0,.25)}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none}
+  .menu-body{gap:18px}
+  .menu-photo{aspect-ratio:16/9}
+  .list li{padding:13px 0}
+  .list li b{font-size:16px}
+  .cocktails{gap:6px}.ck{min-height:150px}
+  .gallery{margin-top:28px}
+  /* как найти: сначала адрес и бронь, фото после */
+  .visit-grid>div:first-child{order:2}
+  .facade{aspect-ratio:4/3;max-width:none}
+  .addr{margin:18px 0 22px;font-size:16px}
+}
+.swipe-hint{display:none;align-items:center;gap:8px;margin-top:6px;font-size:13px;color:var(--muted)}
+.swipe-hint::after{content:"→";animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(5px)}}
 
 @media (max-height:520px) and (orientation:landscape){.cap h1,.cap h2{font-size:clamp(24px,4vw,40px)}.cap p{display:none}.cap .cta{margin-top:12px}.caps{padding-bottom:16px}}
 @media (prefers-reduced-motion:reduce){
@@ -249,8 +334,8 @@ footer img{width:140px;opacity:.9}
       <a href="#room">Интерьер</a>
       <a href="#visit">Как найти</a>
     </nav>
-    <span class="open-pill" id="openPill"><i></i><span>Открыто до 02:00</span></span>
-    <a class="btn" href="#visit">Забронировать</a>
+    <span class="open-pill" id="openPill"><i></i><span><b class="lg">Открыто </b>до 02:00</span></span>
+    <a class="btn hbook" href="#visit" data-book>Забронировать</a>
   </div>
 </header>
 
@@ -266,7 +351,7 @@ footer img{width:140px;opacity:.9}
           <span class="eyebrow">Гастробистро · Соборный, 19</span>
           <h1>Кухня уровня White&nbsp;Rabbit. <em style="font-style:normal;color:var(--red)">Каждый день.</em></h1>
           <p>Открытая кухня, живой бар и мурал, с которого на вас смотрят повара. С 8 утра до 2 ночи в центре Ростова.</p>
-          <div class="cta"><a class="btn" href="#visit">Забронировать стол</a><a class="btn ghost" href="#menu">Меню</a></div>
+          <div class="cta"><a class="btn" href="#visit" data-book>Забронировать стол</a><a class="btn ghost" href="#menu">Меню</a></div>
         </div>
         <div class="cap" data-cap="1">
           <span class="eyebrow">Завтраки · с 9 до 12</span>
@@ -290,7 +375,7 @@ footer img{width:140px;opacity:.9}
           <span class="eyebrow">Открытая кухня до 2 ночи</span>
           <h2>Всё готовится у вас на глазах</h2>
           <p>Неон над раздачей, стальная линия кухни и команда, которая работает как часы.</p>
-          <div class="cta"><a class="btn" href="#visit">Забронировать стол</a></div>
+          <div class="cta"><a class="btn" href="#visit" data-book>Забронировать стол</a></div>
         </div>
         <div class="counter" aria-hidden="true">
           <span id="cnt">01 / 05</span>
@@ -312,6 +397,7 @@ footer img{width:140px;opacity:.9}
       <div class="fact f3"><b>MICHELIN</b><span>«Техникум» рекомендован гидом MICHELIN Москва в 2022 году.</span></div>
       <div class="fact f4"><b>Открытая кухня</b><span>И живой бар: коктейли с названиями, которые вы узнаете.</span></div>
     </div>
+    <div class="swipe-hint">листайте</div>
   </div>
 </section>
 
@@ -320,7 +406,7 @@ footer img{width:140px;opacity:.9}
   <div class="wrap">
     <div class="sec-head">
       <div><span class="eyebrow">За чем возвращаются</span><h2>Четыре <em>хита</em> бренда</h2></div>
-      <p class="lead">Наведите на плитку или нажмите на неё, чтобы перевернуть.</p>
+      <p class="lead">Наведите на плитку или нажмите на неё, чтобы перевернуть. Листайте вбок.</p>
     </div>
     <div class="flipgrid">
       <button class="flip" type="button" aria-label="Пи**а «Техникум», перевернуть">
@@ -495,17 +581,24 @@ footer img{width:140px;opacity:.9}
         <span>Ростов-на-Дону, центр · каждый день 08:00–02:00</span>
         <a href="tel:+78633205801">+7 (863) 320-58-01</a>
       </div>
+      <div class="book-slot" id="bookSlot">
       <form class="book" id="book" novalidate>
-        <label class="full">Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться" required></label>
-        <label class="full">Телефон<input name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
-        <label>Дата<input name="date" type="date" id="date" required></label>
-        <label>Время<select name="time" id="time"></select></label>
-        <div class="full" style="display:grid;gap:6px"><span style="font-size:13px;font-weight:600;color:#5b5049">Гостей</span>
+        <div class="full grp"><span class="gl">Когда</span>
+          <div class="chiprow" id="days"></div>
+          <input name="date" type="date" id="date" class="other-date" hidden>
+        </div>
+        <div class="full grp"><span class="gl">Во сколько</span>
+          <div class="chiprow scroll" id="times"></div>
+        </div>
+        <div class="full grp"><span class="gl">Гостей</span>
           <div class="people" id="people"><button type="button" aria-pressed="false">1</button><button type="button" aria-pressed="true">2</button><button type="button" aria-pressed="false">3</button><button type="button" aria-pressed="false">4</button><button type="button" aria-pressed="false">5+</button></div>
         </div>
-        <button class="btn" type="submit">Забронировать стол</button>
+        <label class="full">Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться"></label>
+        <label class="full">Телефон<input name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__"></label>
+        <button class="btn" type="submit" id="bookBtn">Забронировать стол</button>
         <div class="done" role="status" id="done"></div>
       </form>
+      </div>
       <p class="small">Бронь держим 15 минут. Гости с питомцами до 4 кг — welcome.</p>
       <div class="chips">
         <a href="https://yandex.ru/maps/?text=%D0%A0%D0%BE%D1%81%D1%82%D0%BE%D0%B2-%D0%BD%D0%B0-%D0%94%D0%BE%D0%BD%D1%83%2C%20%D0%A1%D0%BE%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA%2C%2019" target="_blank" rel="noopener">Маршрут в Яндекс Картах ↗</a>
@@ -524,7 +617,12 @@ footer img{width:140px;opacity:.9}
   </div>
 </footer>
 
-<div class="dock" id="dock"><a class="btn ghost" href="tel:+78633205801">Позвонить</a><a class="btn" href="#visit">Забронировать</a></div>
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-head"><span class="grab" aria-hidden="true"></span><div><b id="sheetTitle">Стол в «Техникуме»</b><small>Соборный, 19 · ответим в течение 15 минут</small></div><button type="button" class="x" id="sheetClose" aria-label="Закрыть">✕</button></div>
+  <div class="sheet-body" id="sheetBody"></div>
+</dialog>
+
+<div class="dock" id="dock"><a class="btn ghost" href="tel:+78633205801">Позвонить</a><a class="btn" href="#visit" data-book>Забронировать</a></div>
 
 <script>
 (()=>{
@@ -744,16 +842,56 @@ const vis=document.getElementById('visit');
 new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)vis.classList.add('lit')}),{threshold:.3}).observe(vis);
 
 /* ---------- бронь (демо) ---------- */
-const date=document.getElementById('date'),time=document.getElementById('time');
-const today=new Date();date.value=today.toISOString().slice(0,10);date.min=date.value;
-for(let h=8;h<=25;h++)for(const m of ['00','30']){const hv=h%24;const o=document.createElement('option');o.textContent=String(hv).padStart(2,'0')+':'+m;if(h===19&&m==='00')o.selected=true;time.appendChild(o)}
-let guests='2';
-document.querySelectorAll('#people button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#people button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');guests=b.textContent});
-document.getElementById('book').addEventListener('submit',e=>{e.preventDefault();const f=e.target;
-  const name=f.elements.name.value.trim()||'Гость';
-  const d=new Date(date.value+'T12:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
-  document.getElementById('done').textContent=name+', стол на '+guests+' ждёт вас '+d+' в '+time.value+'. Перезвоним, чтобы подтвердить. (Это демо: заявка никуда не ушла.)';
-  f.classList.add('sent')});
+const form=document.getElementById('book'),date=document.getElementById('date'),days=document.getElementById('days'),times=document.getElementById('times');
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const press=(row,btn)=>{row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===btn?'true':'false'))};
+let bDate=iso(new Date()),bTime='',guests='2';
+date.min=bDate;
+function dayBtn(label,sub,val){const b=document.createElement('button');b.type='button';b.innerHTML=label+'<small></small>';b.querySelector('small').textContent=sub;b.onclick=()=>{press(days,b);date.hidden=val!==null;if(val===null){date.focus();try{date.showPicker()}catch(e){}}else{bDate=val;fillTimes()}};days.appendChild(b);return b}
+const now=new Date();
+for(let i=0;i<3;i++){const d=new Date(now);d.setDate(now.getDate()+i);
+  const lbl=i===0?'Сегодня':i===1?'Завтра':d.toLocaleDateString('ru-RU',{weekday:'short'}).replace(/^./,c=>c.toUpperCase());
+  const b=dayBtn(lbl,d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'}).replace('.',''),iso(d));if(i===0)b.setAttribute('aria-pressed','true')}
+dayBtn('Другая','дата',null);
+date.onchange=()=>{if(date.value){bDate=date.value;fillTimes()}};
+function fillTimes(){
+  times.innerHTML='';const isToday=bDate===iso(new Date());const nowH=H<2?H+24:H;let first=null,pick=null;
+  for(let h=8;h<=25;h++)for(const m of [0,30]){const t=h+m/60;if(isToday&&t<nowH+.5)continue;
+    const b=document.createElement('button');b.type='button';b.textContent=pad(h%24)+':'+pad(m);b.onclick=()=>{press(times,b);bTime=b.textContent};times.appendChild(b);
+    if(!first)first=b;if(h===19&&m===0)pick=b}
+  if(!first){const b=document.createElement('button');b.type='button';b.disabled=true;b.textContent='На сегодня уже поздно, выберите другой день';times.appendChild(b);bTime='';return}
+  const sel=pick||first;press(times,sel);bTime=sel.textContent;
+  requestAnimationFrame(()=>{times.scrollLeft=Math.max(0,sel.offsetLeft-times.clientWidth/2+sel.offsetWidth/2)});
+}
+fillTimes();
+document.querySelectorAll('#people button').forEach(b=>b.onclick=()=>{press(document.getElementById('people'),b);guests=b.textContent});
+form.addEventListener('submit',e=>{e.preventDefault();
+  const n=form.elements.name,t=form.elements.tel;let ok=true;
+  [n,t].forEach(x=>x.classList.remove('err'));
+  if(t.value.replace(/\D/g,'').length<10){t.classList.add('err');ok=false;t.focus()}
+  if(!bTime)ok=false;
+  if(!ok)return;
+  const name=n.value.trim()||'Гость';
+  const d=new Date(bDate+'T12:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+  document.getElementById('done').textContent=name+', стол на '+guests+' ждёт вас '+d+' в '+bTime+'. Перезвоним, чтобы подтвердить. (Это демо: заявка никуда не ушла.)';
+  form.classList.add('sent');document.getElementById('done').scrollIntoView({block:'nearest',behavior:'smooth'})});
+
+/* ---------- окно брони: форма переезжает в него ---------- */
+const sheet=document.getElementById('sheet'),sheetBody=document.getElementById('sheetBody'),slot=document.getElementById('bookSlot');
+function openBook(){
+  if(typeof sheet.showModal!=='function'){document.getElementById('visit').scrollIntoView({behavior:'smooth'});return}
+  form.classList.remove('sent');sheetBody.appendChild(form);sheet.showModal();document.documentElement.classList.add('locked');
+  const sel=times.querySelector('[aria-pressed="true"]');if(sel)requestAnimationFrame(()=>{times.scrollLeft=Math.max(0,sel.offsetLeft-times.clientWidth/2+sel.offsetWidth/2)});
+}
+sheet.addEventListener('close',()=>{slot.appendChild(form);document.documentElement.classList.remove('locked')});
+document.getElementById('sheetClose').onclick=()=>sheet.close();
+sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.close()});
+document.querySelectorAll('[data-book]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openBook()}));
+
+/* ---------- «день»: на телефоне карусель сразу показывает текущее время ---------- */
+const nowSlot=document.querySelector('.slot.now'),tl=document.getElementById('timeline');
+if(nowSlot&&tl.scrollWidth>tl.clientWidth)tl.scrollLeft=nowSlot.getBoundingClientRect().left-tl.getBoundingClientRect().left-16;
 })();
 </script>
 </body>
