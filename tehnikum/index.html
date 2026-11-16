@@ -61,8 +61,8 @@ nav.main a:hover{opacity:1}
 .stage::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,rgba(20,14,11,.7) 0,rgba(20,14,11,0) 22%,rgba(20,14,11,0) 42%,rgba(20,14,11,.9) 100%),linear-gradient(90deg,rgba(20,14,11,.55) 0,rgba(20,14,11,0) 60%)}
 .caps{position:absolute;z-index:2;left:0;right:0;bottom:0;padding-bottom:max(34px,env(safe-area-inset-bottom,0px));pointer-events:none}
-.caps .wrap{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px}
-.cap{grid-area:1/1;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;max-width:780px}
+.caps .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px}
+.cap{grid-area:1/1;min-width:0;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;max-width:780px}
 .cap.on{opacity:1;transform:none}
 .cap .eyebrow{margin-bottom:14px}
 .cap h1,.cap h2{font-size:clamp(32px,5.6vw,84px);text-shadow:0 2px 30px rgba(0,0,0,.45)}
@@ -74,7 +74,7 @@ nav.main a:hover{opacity:1}
 .pips span{width:16px;height:16px;background:rgba(241,230,210,.18);transition:background .3s}
 .pips span.on{background:var(--red)}
 .hint{position:absolute;z-index:2;top:50%;right:max(16px,env(safe-area-inset-right,0px));transform:translateY(-50%);writing-mode:vertical-rl;font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;pointer-events:none}
-@media (max-width:700px){.hint{display:none}.caps .wrap{grid-template-columns:1fr}.counter{justify-items:start;grid-row:2}}
+@media (max-width:700px){.hint{display:none}.caps .wrap{grid-template-columns:minmax(0,1fr)}.cap .eyebrow{letter-spacing:.12em;font-size:11px}.counter{justify-items:start;grid-row:2}}
 
 /* ===== манифест ===== */
 .manifest{padding:120px 0 90px;background:var(--night)}
@@ -85,7 +85,8 @@ nav.main a:hover{opacity:1}
 .fact b{font-family:var(--display);font-size:clamp(26px,3vw,40px);line-height:1;font-weight:700;letter-spacing:-.02em}
 .fact span{font-size:15px;line-height:1.45}
 .f1{background:var(--red);color:#fff}.f2{background:var(--cream);color:var(--ink)}.f3{background:var(--steel);color:var(--ink)}.f4{background:var(--olive);color:var(--cream)}
-@media (max-width:860px){.facts{grid-template-columns:1fr 1fr}.fact{min-height:150px}}
+@media (max-width:860px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact{min-height:150px;padding:20px 16px}.fact b{font-size:clamp(20px,5.6vw,30px);overflow-wrap:anywhere}}
+@media (max-width:360px){.facts{grid-template-columns:minmax(0,1fr)}.fact{min-height:0}}
 
 /* ===== хиты: плитки-перевёртыши ===== */
 .hits{padding:100px 0;background:var(--wood)}
@@ -107,8 +108,9 @@ nav.main a:hover{opacity:1}
 .face.back p{margin:12px 0 0;font-size:15px;line-height:1.5;color:#4a3b31}
 .face.back .p{font-family:var(--display);font-size:30px;font-weight:700;color:var(--red-d)}
 .face.back .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--caramel)}
-@media (max-width:1000px){.flipgrid{grid-template-columns:1fr 1fr}.flip{min-height:360px}}
+@media (max-width:1000px){.flipgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.flip{min-height:360px}}
 @media (max-width:520px){.flipgrid{gap:10px}.flip{min-height:300px}.face.front h3{font-size:16px}.face.back{padding:18px 16px}.face.back h3{font-size:18px}.face.back .p{font-size:24px}.face.back p{font-size:14px}}
+@media (max-width:400px){.face.front .turn{display:none}.face.front .lbl{padding:12px}.face.front h3{font-size:14px}.cocktails{grid-template-columns:repeat(2,minmax(0,1fr))}.ck .face{padding:14px}}
 
 /* ===== меню ===== */
 .menu{padding:110px 0;background:var(--cream);color:var(--ink)}
@@ -229,6 +231,7 @@ footer img{width:140px;opacity:.9}
 @media (max-width:900px){.dock{display:flex}}
 @media (min-width:901px){footer{padding-bottom:46px}}
 
+@media (max-height:520px) and (orientation:landscape){.cap h1,.cap h2{font-size:clamp(24px,4vw,40px)}.cap p{display:none}.cap .cta{margin-top:12px}.caps{padding-bottom:16px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
   .visit .facade .sign{opacity:.7}
@@ -302,7 +305,7 @@ footer img{width:140px;opacity:.9}
 <section class="manifest" id="about">
   <div class="wrap">
     <span class="eyebrow">О бистро</span>
-    <p class="big">Мы ломаем стереотип, что авторская кухня — это <span>долго, дорого и&nbsp;по&nbsp;праздникам.</span> Здесь она быстрая, понятная и на каждый день.</p>
+    <p class="big">Мы ломаем стереотип, что авторская кухня — это <span>долго, дорого и по праздникам.</span> Здесь она быстрая, понятная и на каждый день.</p>
     <div class="facts">
       <div class="fact f1"><b>08:00–02:00</b><span>Каждый день. Завтраки с 9 до 12, поздние завтраки потом.</span></div>
       <div class="fact f2"><b>White Rabbit Family</b><span>От создателей White Rabbit. Шеф бренда Владимир Мухин.</span></div>
