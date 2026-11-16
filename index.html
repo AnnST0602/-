@@ -2,198 +2,470 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Сайты под ключ — портфолио</title>
-<meta name="description" content="Делаю сайты под ключ индивидуально под заказчика: лендинги, визитки, онлайн-приглашения, сложные анимации. Хостинг, домен, формы, интеграции, база данных и самостоятельное редактирование блоков.">
-<meta property="og:title" content="Сайты под ключ — портфолио">
-<meta property="og:description" content="Лендинги, визитки, онлайн-приглашения. Хостинг, домен, интеграции, база данных.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Анна Стасенко · сайты</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Анна Стасенко. Сайты под ключ индивидуально под заказчика: лендинги, визитки, онлайн-приглашения, сложные анимации. Хостинг, домен, интеграции, база данных.">
+<meta property="og:title" content="Анна Стасенко · сайты под ключ">
+<meta property="og:description" content="Лендинги, визитки, онлайн-приглашения и сложные анимации. Индивидуально под каждого заказчика.">
+<meta property="og:image" content="img/wedding-desktop.jpg">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* Layout: тёмная «студия» с сеткой-холстом; герой = живой конструктор сайта, дальше работы в устройствах, бенто услуг, шаги, цены */
 :root{
-  --bg:#f6f4f0; --surface:#ffffff; --text:#1d1b18; --muted:#6b665e;
-  --accent:#d97757; --accent-soft:#f6e3db; --line:#e6e1d8;
+  --bg:#110e19; --surface:#1b1727; --surface-2:#252036; --fg:#f4f0fa; --muted:#a59eb8; --line:#2f2942;
+  --accent:#ff5c8a; --gold:#ffc46b; --on-accent:#1a0710; --grid:rgba(255,255,255,.045); --shadow:rgba(0,0,0,.55);
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){
-  :root{ --bg:#161513; --surface:#211f1c; --text:#f1ede6; --muted:#a9a297;
-         --accent:#e88b6c; --accent-soft:#3a2a23; --line:#34302b; }
-}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f6f3fa; --surface:#ffffff; --surface-2:#efe9f6; --fg:#1a1526; --muted:#625a75; --line:#e1daec;
+  --accent:#de3a6c; --gold:#b9770f; --on-accent:#ffffff; --grid:rgba(40,20,80,.06); --shadow:rgba(40,20,70,.22); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f6f3fa; --surface:#ffffff; --surface-2:#efe9f6; --fg:#1a1526; --muted:#625a75; --line:#e1daec;
+  --accent:#de3a6c; --gold:#b9770f; --on-accent:#ffffff; --grid:rgba(40,20,80,.06); --shadow:rgba(40,20,70,.22); color-scheme:light}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+html{overflow-x:clip}
 a{color:inherit}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-header{padding:20px 0;border-bottom:1px solid var(--line)}
-header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.logo{font-weight:800;text-decoration:none}
-nav a{margin-left:18px;text-decoration:none;color:var(--muted)}
-nav a:hover{color:var(--text)}
-.hero{padding:72px 0 56px}
-.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin:0 0 18px;max-width:780px}
-.hero p{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 28px}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:14px 24px;border-radius:12px;font-weight:600}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:8px}
-section{padding:56px 0}
-h2{font-size:30px;margin:0 0 28px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
-.card h3{margin:0 0 8px;font-size:18px}
-.card p{margin:0;color:var(--muted)}
-.icon{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800;margin-bottom:12px}
-.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;margin-bottom:22px}
-.case .tag{display:inline-block;font-size:13px;background:var(--accent-soft);color:var(--accent);padding:4px 10px;border-radius:999px;margin-bottom:10px;font-weight:600}
-.case h3{font-size:24px;margin:0 0 10px}
-.case ul{margin:0;padding-left:20px}
-.case li{margin:4px 0}
-.case .task{color:var(--muted);margin:0 0 16px}
-.case a.link{display:inline-block;margin-top:16px;font-weight:600;color:var(--accent)}
-.steps{counter-reset:s;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.steps .card::before{counter-increment:s;content:counter(s);display:block;font-size:28px;font-weight:800;color:var(--accent)}
-.price td{padding:12px 0;border-bottom:1px solid var(--line)}
-.price{width:100%;border-collapse:collapse}
-.price td:last-child{text-align:right;font-weight:600;white-space:nowrap;padding-left:16px}
-.contact{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px;text-align:center}
-.case{grid-template-columns:1fr 1fr}
-.case .mock{grid-column:1/-1;position:relative;padding:8px 9% 40px 0;margin-bottom:4px}
-.laptop{position:relative}
-.laptop .screen{background:#1b1a19;border-radius:14px 14px 0 0;padding:2.2% 2.2% 0;box-shadow:0 24px 50px -20px rgba(0,0,0,.35)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4.2vw,48px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.head{display:grid;gap:14px;margin-bottom:44px;max-width:720px}
+.head p{margin:0;color:var(--muted);font-size:18px}
+section{padding-block:88px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-weight:800;text-decoration:none;font-size:17px;letter-spacing:-.01em}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:26px}
+nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px;transition:color .2s}
+nav a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;border-radius:999px;padding:15px 26px;transition:transform .25s,box-shadow .25s,background .25s;border:0;cursor:pointer;font:inherit;font-weight:700}
+.btn-main{background:var(--accent);color:var(--on-accent);box-shadow:0 10px 30px -10px var(--accent)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px var(--accent)}
+.btn-line{border:1px solid var(--line);color:var(--fg);background:transparent}
+.btn-line:hover{border-color:var(--fg)}
+.btn-sm{padding:10px 18px;font-size:15px}
+
+/* hero */
+.hero{position:relative;padding-block:72px 64px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 70% at 60% 40%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 60% 40%,#000 30%,transparent 75%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero-text{min-width:0}
+.hero h1{font-size:clamp(36px,5.6vw,72px);line-height:1;letter-spacing:-.035em;font-weight:800;margin:18px 0 24px}
+.shine{background:linear-gradient(100deg,var(--accent) 0%,var(--gold) 35%,var(--accent) 70%,var(--gold) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:540px;margin:0 0 32px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hello{display:inline-flex;align-items:center;gap:10px;font-weight:500;color:var(--muted);font-size:15px}
+.hello i{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+
+/* живой конструктор */
+.builder{position:relative;min-width:0}
+.win{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 40px 80px -30px var(--shadow);overflow:hidden;transform:perspective(1400px) rotateY(-9deg) rotateX(4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.builder:hover .win{transform:perspective(1400px) rotateY(0) rotateX(0)}
+.bar{display:flex;align-items:center;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.bar b{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.bar b:nth-child(1){background:#ff6159}.bar b:nth-child(2){background:#ffbd2e}.bar b:nth-child(3){background:#28c941}
+.url{margin-left:10px;flex:1;font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:5px 12px;white-space:nowrap;overflow:hidden}
+.url::after{content:"|";animation:blink 1s steps(1) infinite;margin-left:1px;color:var(--accent)}
+@keyframes blink{50%{opacity:0}}
+.canvas{position:relative;padding:18px;display:grid;gap:12px;grid-template-columns:repeat(6,1fr);aspect-ratio:4/3.1}
+.canvas > *{border-radius:10px;animation:build 9s cubic-bezier(.2,.9,.25,1.2) infinite both}
+.b-nav{grid-column:1/-1;height:16px;display:flex;gap:8px;align-items:center;background:none!important}
+.b-nav span{height:8px;border-radius:4px;background:var(--line);flex:0 0 14%}
+.b-nav span:first-child{flex-basis:22%;background:var(--fg);opacity:.85}
+.b-nav span:last-child{margin-left:auto;flex-basis:16%;height:16px;background:var(--accent);border-radius:999px}
+.b-img{grid-column:4/-1;grid-row:2/5;background:linear-gradient(135deg,var(--accent),var(--gold));position:relative;overflow:hidden}
+.b-img::after{content:"";position:absolute;width:60%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.25);right:-14%;bottom:-20%}
+.b-h1{grid-column:1/4;height:22px;background:var(--fg);opacity:.9;align-self:end}
+.b-h2{grid-column:1/3;height:22px;background:var(--fg);opacity:.9}
+.b-p{grid-column:1/4;height:30px;background:repeating-linear-gradient(var(--line) 0 7px,transparent 7px 12px)}
+.b-btn{grid-column:1/3;height:30px;background:var(--accent);border-radius:999px;position:relative}
+.b-card{grid-column:span 2;height:64px;background:var(--surface-2);border:1px solid var(--line);position:relative}
+.b-card::before{content:"";position:absolute;left:12px;top:12px;width:22px;height:22px;border-radius:7px;background:var(--gold);opacity:.8}
+.b-card::after{content:"";position:absolute;left:12px;right:30%;bottom:14px;height:7px;border-radius:4px;background:var(--line)}
+.b-nav{animation-delay:-8.4s}.b-img{animation-delay:-8s}.b-h1{animation-delay:-7.7s}.b-h2{animation-delay:-7.5s}
+.b-p{animation-delay:-7.2s}.b-btn{animation-delay:-6.9s}.b-c1{animation-delay:-6.6s}.b-c2{animation-delay:-6.4s}.b-c3{animation-delay:-6.2s}
+@keyframes build{0%{opacity:0;transform:translateY(18px) scale(.85)}9%{opacity:1;transform:none}86%{opacity:1;transform:none}96%,100%{opacity:0;transform:translateY(-8px) scale(.97)}}
+.cursor{position:absolute;width:22px;height:22px;left:0;top:0;z-index:3;animation:cur 9s ease-in-out infinite -6s;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.4))}
+@keyframes cur{0%,100%{left:82%;top:18%}33%,48%{left:20%;top:63%}40%{transform:scale(.75)}44%{transform:scale(1)}75%{left:62%;top:86%}}
+.chip{position:absolute;z-index:2;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:14px;font-weight:700;box-shadow:0 20px 40px -18px var(--shadow);display:flex;align-items:center;gap:8px;white-space:nowrap;animation:float 6s ease-in-out infinite}
+.chip small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.chip .dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2);color:var(--accent);font-size:15px}
+.chip-1{left:-26px;bottom:14%}
+.chip-2{right:-14px;top:-18px;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* бегущая строка */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:20px;background:var(--surface)}
+.track{display:flex;gap:44px;width:max-content;animation:run 38s linear infinite}
+.track span{font-family:var(--display);font-size:clamp(18px,2.4vw,26px);font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:44px}
+.track span::after{content:"✦";color:var(--accent);font-size:.8em}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* работы */
+.case{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center;padding-block:40px}
+.case + .case{border-top:1px solid var(--line)}
+.case.flip .mock{order:2}
+.mock{position:relative;padding:0 9% 40px 0;min-width:0;perspective:1600px}
+.tilt{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.laptop .screen{background:#141218;border-radius:14px 14px 0 0;padding:2.2% 2.2% 0;border:1px solid #2c2933}
 .laptop .screen img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:4px 4px 0 0}
-.laptop .base{height:14px;margin:0 -5%;background:linear-gradient(#d9d5ce,#b9b4ab);border-radius:0 0 14px 14px;position:relative}
-.laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);background:#a7a198;border-radius:0 0 8px 8px}
-.phone{position:absolute;right:0;bottom:0;width:23%;background:#111;border-radius:28px;padding:7px;box-shadow:0 24px 40px -14px rgba(0,0,0,.45)}
+.laptop .base{height:14px;margin:0 -5%;background:linear-gradient(#d4d0d9,#9e99a6);border-radius:0 0 14px 14px;position:relative;box-shadow:0 30px 50px -20px var(--shadow)}
+.laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);background:#8a8592;border-radius:0 0 8px 8px}
+.phone{position:absolute;right:0;bottom:0;width:24%;background:#0d0c10;border-radius:28px;padding:6px;box-shadow:0 0 0 1px #34303c,0 30px 50px -14px var(--shadow);transform:translateZ(60px)}
 .phone img{display:block;width:100%;height:auto;aspect-ratio:1/2;object-fit:cover;object-position:top;border-radius:22px}
-.phone::before{content:"";position:absolute;top:13px;left:50%;width:30%;height:9px;transform:translateX(-50%);background:#111;border-radius:9px;z-index:1}
-@media (prefers-color-scheme:dark){.laptop .base{background:linear-gradient(#57524b,#3d3934)}.laptop .base::after{background:#2c2925}.phone{box-shadow:0 0 0 1px #3a3631,0 24px 40px -14px #000}}
-@media (max-width:720px){.case .mock{padding:4px 12% 28px 0}.phone{width:30%;border-radius:18px;padding:4px}.phone img{border-radius:14px}.phone::before{top:8px;height:6px}.laptop .base{height:9px}}
-footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
-@media (max-width:720px){
+.phone::before{content:"";position:absolute;top:12px;left:50%;width:30%;height:9px;transform:translateX(-50%);background:#0d0c10;border-radius:9px;z-index:1}
+.case-text{min-width:0;display:grid;gap:16px;align-content:start}
+.tag{justify-self:start;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+.case h3{font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-.01em}
+.case p{margin:0;color:var(--muted)}
+.feats{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:4px 0 0}
+.feats li{font-size:14px;padding:7px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.open{justify-self:start;margin-top:6px;font-weight:700;text-decoration:none;display:inline-flex;gap:8px;align-items:center;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.open:hover span{transform:translateX(4px)}
+.open span{transition:transform .2s;color:var(--accent)}
+
+/* услуги: бенто */
+.bento{display:grid;gap:16px;grid-template-columns:repeat(6,1fr)}
+.tile{--x:50%;--y:50%;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;overflow:hidden;min-width:0;grid-column:span 2;transition:border-color .3s,transform .3s}
+.tile::before{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--x) var(--y),color-mix(in srgb,var(--accent) 18%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.tile:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-3px)}
+.tile:hover::before{opacity:1}
+.tile h3{font-size:19px;margin-bottom:10px;position:relative}
+.tile p{margin:0;color:var(--muted);position:relative;font-size:16px}
+.tile.wide{grid-column:span 3}
+.tile.anim{grid-column:span 4;display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:center}
+.tile.anim .demo{position:relative;height:150px;display:grid;place-items:center}
+.ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--surface-2);margin-bottom:18px;position:relative}
+.ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* мини-конверт */
+.env{position:relative;width:150px;height:100px;perspective:500px}
+.env .back{position:absolute;inset:0;background:#7a1f3d;border-radius:8px}
+.env .card{position:absolute;left:10px;right:10px;top:10px;height:80px;background:#fff8ee;border-radius:6px;display:grid;place-items:center;font-family:Georgia,serif;font-style:italic;color:#7a1f3d;font-size:15px;animation:card 4.5s ease-in-out infinite}
+.env .front{position:absolute;inset:0;border-radius:8px;background:linear-gradient(to top right,#93284b 50%,transparent 50.5%) left/50% 100% no-repeat,linear-gradient(to top left,#93284b 50%,transparent 50.5%) right/50% 100% no-repeat}
+.env .flap{position:absolute;left:0;right:0;top:0;height:60px;transform-origin:top;background:linear-gradient(to bottom,#a5305a,#8a2346);clip-path:polygon(0 0,100% 0,50% 100%);animation:flap 4.5s ease-in-out infinite;z-index:2}
+.env .seal{position:absolute;left:50%;top:44px;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe3a0,#c99632);z-index:3;animation:seal 4.5s ease-in-out infinite}
+@keyframes flap{0%,15%{transform:rotateX(0)}35%,80%{transform:rotateX(180deg);z-index:0}100%{transform:rotateX(0)}}
+@keyframes seal{0%,12%{opacity:1;transform:scale(1)}20%,85%{opacity:0;transform:scale(1.6)}100%{opacity:1}}
+@keyframes card{0%,30%{transform:translateY(0)}50%,78%{transform:translateY(-58px)}95%,100%{transform:translateY(0)}}
+
+/* шаги */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;list-style:none;padding:0;margin:0;counter-reset:s}
+.steps::before{content:"";position:absolute;left:0;right:0;top:23px;height:2px;background:var(--line)}
+.steps li{position:relative;counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);color:var(--accent);font-family:var(--display);font-weight:800;margin-bottom:20px;position:relative}
+.steps h3{font-size:18px;margin-bottom:8px}
+.steps p{margin:0;color:var(--muted);font-size:16px}
+
+/* цены */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;gap:14px;align-content:start;min-width:0}
+.price.hot{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 22%,var(--surface)),var(--surface) 60%);border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+.price h3{font-size:18px}
+.price .sum{font-family:var(--display);font-size:clamp(30px,3.4vw,42px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.price .sum small{font-size:.45em;font-weight:600;color:var(--muted);letter-spacing:0;margin-right:6px}
+.price .sum-text{font-size:clamp(22px,2.2vw,28px);line-height:1.3}
+.price p{margin:0;color:var(--muted);font-size:16px}
+.note{margin:22px 0 0;color:var(--muted);font-size:15px}
+
+/* контакт */
+.contact{position:relative;overflow:hidden;border-radius:32px;padding:clamp(36px,6vw,72px);background:var(--surface);border:1px solid var(--line);display:grid;gap:20px;justify-items:start}
+.contact::after{content:"";position:absolute;width:520px;aspect-ratio:1;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 35%,transparent),transparent 65%);animation:drift 12s ease-in-out infinite alternate;pointer-events:none}
+@keyframes drift{to{transform:translate(-120px,80px)}}
+.contact h2{font-size:clamp(32px,5.4vw,64px);position:relative;max-width:760px}
+.contact p{margin:0;color:var(--muted);max-width:560px;position:relative}
+.contact .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;position:relative}
+.nick{font-family:var(--display);font-weight:600;user-select:all;padding:12px 16px;border-radius:14px;border:1px dashed var(--line)}
+footer{padding-block:36px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* появление при прокрутке (только где браузер это умеет, в покое всё видно) */
+@supports (animation-timeline:view()){
+  .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  @keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+}
+
+@media (max-width:960px){
   nav{display:none}
-  .case{grid-template-columns:1fr;padding:22px}
-  .case .mock{grid-column:auto}
-  .btn.ghost{margin:10px 0 0}
-  .wrap{padding:0 16px}
+  .hero .wrap,.case{grid-template-columns:1fr;gap:40px}
+  .case.flip .mock{order:0}
+  .builder{max-width:560px;margin-inline:auto;width:100%}
+  .chip-1{left:-6px}.chip-2{right:-4px}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .tile,.tile.wide{grid-column:span 1}
+  .tile.anim{grid-column:1/-1}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .steps::before{display:none}
+  .prices{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  section{padding-block:64px}
+  .hero{padding-block:44px 48px}
+  .tile.anim{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .mock{padding:0 12% 28px 0}
+  .phone{width:30%;border-radius:18px;padding:4px}.phone img{border-radius:14px}.phone::before{top:8px;height:6px}
+  .laptop .base{height:9px}
+  .chip{font-size:13px;padding:8px 10px}.chip .dot{width:24px;height:24px}
+  .chip-2{top:-14px}
+  .head{margin-bottom:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .win{transform:none}
 }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <a class="logo" href="#">Ann · сайты под ключ</a>
-    <nav><a href="#services">Услуги</a><a href="#cases">Работы</a><a href="#steps">Как работаю</a><a href="#prices">Цены</a><a href="#contact">Связаться</a></nav>
+    <a class="logo" href="#top">Анна Стасенко<span>.</span></a>
+    <nav aria-label="Разделы">
+      <a href="#cases">Работы</a><a href="#services">Услуги</a><a href="#steps">Как работаю</a><a href="#prices">Цены</a>
+    </nav>
+    <a class="btn btn-main btn-sm" href="https://t.me/stannad" target="_blank" rel="noopener">Написать</a>
   </div>
 </header>
 
-<main>
-<div class="wrap hero">
-  <h1>Сайт, который просто работает: от макета до домена</h1>
-  <p>Делаю лендинги, сайты-визитки и онлайн-приглашения индивидуально под каждого заказчика, без шаблонов, в том числе со сложными анимациями. Размещаю на хостинге, подключаю домен, формы, базу данных и нужные сервисы. Небольшие сайты отдаю с возможностью самостоятельно менять тексты и блоки.</p>
-  <a class="btn" href="#contact">Обсудить сайт</a>
-  <a class="btn ghost" href="#cases">Посмотреть работы</a>
-</div>
-
-<section id="services">
+<main id="top">
+<section class="hero">
   <div class="wrap">
-    <h2>Что я делаю</h2>
-    <div class="grid">
-      <div class="card"><div class="icon">1</div><h3>Сайт под ключ</h3><p>Лендинг, визитка, приглашение. Дизайн и структура индивидуально под вашу задачу, без шаблонов. Адаптив под телефон, быстрая загрузка, красивое превью ссылки в мессенджерах.</p></div>
-      <div class="card"><div class="icon">2</div><h3>Хостинг и домен</h3><p>Подбираю и регистрирую домен, размещаю сайт на хостинге, настраиваю HTTPS.</p></div>
-      <div class="card"><div class="icon">3</div><h3>Сервисы и интеграции</h3><p>Формы заявок, Telegram, карты, календари, аналитика, CRM и другие сервисы.</p></div>
-      <div class="card"><div class="icon">4</div><h3>База данных</h3><p>Заявки, ответы анкет и другие данные сохраняются в базе, а не теряются в почте.</p></div>
-      <div class="card"><div class="icon">5</div><h3>Сами редактируете блоки</h3><p>Для небольших сайтов: меняйте тексты, фото и цены без программиста.</p></div>
-      <div class="card"><div class="icon">6</div><h3>Сложные анимации</h3><p>Открывающиеся конверты, плавные появления блоков, эффекты при прокрутке и нажатии. Сайт запоминается и выглядит дорого.</p></div>
+    <div class="hero-text">
+      <span class="hello"><i></i>Анна Стасенко · беру новые проекты</span>
+      <h1>Сайты, которые <span class="shine">хочется листать</span></h1>
+      <p class="lead">Делаю лендинги, сайты-визитки и онлайн-приглашения индивидуально под каждого заказчика, без шаблонов. Делаю сложные анимации. Сама подключу домен, хостинг, формы, базу данных и нужные сервисы.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="https://t.me/stannad" target="_blank" rel="noopener">Обсудить сайт →</a>
+        <a class="btn btn-line" href="#cases">Посмотреть работы</a>
+      </div>
+    </div>
+
+    <div class="builder" aria-hidden="true">
+      <div class="chip chip-2"><span class="dot">✦</span><span>Анимации<small>плавно и без тормозов</small></span></div>
+      <div class="win">
+        <div class="bar"><b></b><b></b><b></b><span class="url">ваш-сайт.ru</span></div>
+        <div class="canvas">
+          <div class="b-nav"><span></span><span></span><span></span><span></span></div>
+          <div class="b-img"></div>
+          <div class="b-h1"></div>
+          <div class="b-h2"></div>
+          <div class="b-p"></div>
+          <div class="b-btn"></div>
+          <div class="b-card b-c1"></div><div class="b-card b-c2"></div><div class="b-card b-c3"></div>
+          <svg class="cursor" viewBox="0 0 24 24"><path d="M4 2l15 10-7 1.5L8.5 21z" fill="#fff" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="chip chip-1"><span class="dot">✓</span><span>Сайт опубликован<small>домен и HTTPS подключены</small></span></div>
     </div>
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Лендинги</span><span>Сайты-визитки</span><span>Онлайн-приглашения</span><span>Сложные анимации</span><span>Хостинг и домен</span><span>Формы и база данных</span><span>Интеграции</span>
+    <span>Лендинги</span><span>Сайты-визитки</span><span>Онлайн-приглашения</span><span>Сложные анимации</span><span>Хостинг и домен</span><span>Формы и база данных</span><span>Интеграции</span>
+  </div>
+</div>
+
 <section id="cases">
   <div class="wrap">
-    <h2>Работы</h2>
+    <div class="head rise">
+      <span class="eyebrow">Работы</span>
+      <h2>Два сайта, два совсем разных характера</h2>
+      <p>Каждый проект начинаю с задачи заказчика, а не с шаблона. Наведите на макет, чтобы его покрутить.</p>
+    </div>
 
-    <article class="case">
-      <div class="mock">
-        <div class="laptop"><div class="screen"><img src="img/wedding-desktop.jpg" alt="Свадебное приглашение: версия для компьютера" loading="lazy" width="1440" height="900"></div><div class="base"></div></div>
-        <div class="phone"><img src="img/wedding-mobile.jpg" alt="Свадебное приглашение: версия для телефона" loading="lazy" width="390" height="824"></div>
-      </div>
-      <div>
+    <article class="case rise">
+      <div class="mock"><div class="tilt">
+        <div class="laptop"><div class="screen"><img src="img/wedding-desktop.jpg" alt="Свадебное приглашение: версия для компьютера" loading="lazy" width="1440" height="840"></div><div class="base"></div></div>
+        <div class="phone"><img src="img/wedding-mobile.jpg" alt="Свадебное приглашение: версия для телефона" loading="lazy" width="390" height="784"></div>
+      </div></div>
+      <div class="case-text">
         <span class="tag">Онлайн-приглашение</span>
         <h3>Свадебное приглашение с анкетой гостей</h3>
-        <p class="task">Задача: заменить бумажные приглашения одной ссылкой, которую удобно отправить в мессенджер, и собрать ответы гостей в одном месте.</p>
-        <a class="link" href="https://svadba-ad.htmlkin.ru/" target="_blank" rel="noopener">Открыть сайт →</a>
+        <p>Одна ссылка вместо бумажных приглашений. Гость «вскрывает» конверт, узнаёт всё о дне и сразу отвечает, придёт ли.</p>
+        <ul class="feats">
+          <li>Конверт с печатью</li><li>Таймер до свадьбы</li><li>Календарь с датой</li><li>Тайминг дня</li><li>Карта</li><li>Дресс-код с палитрой</li><li>Анкета RSVP</li><li>Google Календарь</li>
+        </ul>
+        <a class="open" href="https://svadba-ad.htmlkin.ru/" target="_blank" rel="noopener">Открыть сайт <span>→</span></a>
       </div>
-      <ul>
-        <li>Экран-конверт: гость нажимает на печать и «открывает» приглашение</li>
-        <li>Таймер обратного отсчёта и календарь с отмеченной датой</li>
-        <li>Тайминг дня, локация со ссылкой на Яндекс Карты</li>
-        <li>Дресс-код с палитрой цветов и пожелания пары</li>
-        <li>Анкета RSVP: «приду / с парой / не смогу», напитки, аллергии, с возможностью изменить ответ</li>
-        <li>Кнопка «Добавить в Google Календарь»</li>
-        <li>Адаптив под телефон и превью ссылки для мессенджеров</li>
-      </ul>
     </article>
 
-    <article class="case">
-      <div class="mock">
+    <article class="case flip rise">
+      <div class="mock"><div class="tilt">
         <div class="laptop"><div class="screen"><img src="img/marketer-desktop.jpg" alt="Сайт Виктории Корниенко: версия для компьютера" loading="lazy" width="1440" height="900"></div><div class="base"></div></div>
-        <div class="phone"><img src="img/marketer-mobile.jpg" alt="Сайт Виктории Корниенко: версия для телефона" loading="lazy" width="390" height="824"></div>
-      </div>
-      <div>
+        <div class="phone"><img src="img/marketer-mobile.jpg" alt="Сайт Виктории Корниенко: версия для телефона" loading="lazy" width="390" height="844"></div>
+      </div></div>
+      <div class="case-text">
         <span class="tag">Сайт эксперта</span>
         <h3>Сайт интернет-маркетолога Виктории Корниенко</h3>
-        <p class="task">Задача: сайт специалиста по Яндекс Директу, который показывает экспертизу, кейсы и отзывы и приводит заявки на аудит.</p>
-        <a class="link" href="https://viikornienko.ru" target="_blank" rel="noopener">Открыть сайт →</a>
+        <p>Сайт специалиста по Яндекс Директу: показывает экспертизу, кейсы и отзывы и приводит заявки на аудит.</p>
+        <ul class="feats">
+          <li>17 блоков</li><li>13 кейсов</li><li>Видео-отзывы</li><li>Галерея отчётов</li><li>Форма заявки</li><li>Telegram и MAX</li><li>Свой домен</li><li>WebP и быстрая загрузка</li>
+        </ul>
+        <a class="open" href="https://viikornienko.ru" target="_blank" rel="noopener">Открыть сайт <span>→</span></a>
       </div>
-      <ul>
-        <li>17 блоков: подход, обо мне, аудит, отчётность, услуги, кейсы, отзывы, медиа</li>
-        <li>13 кейсов с кнопкой «Показать ещё», чтобы страница не была перегружена</li>
-        <li>Отзывы: тексты, видео, скриншоты переписок и благодарственные письма</li>
-        <li>Галерея отчётов с увеличением по клику, YouTube-видео грузятся только по нажатию</li>
-        <li>Форма заявки с выбором услуги и согласием на обработку данных, политика конфиденциальности</li>
-        <li>Кнопки Telegram и MAX, якорное меню, мобильная версия</li>
-        <li>Свой домен, изображения в WebP, превью для соцсетей</li>
-      </ul>
     </article>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head rise">
+      <span class="eyebrow">Услуги</span>
+      <h2>Беру на себя всё, от идеи до работающей ссылки</h2>
+    </div>
+    <div class="bento">
+      <div class="tile anim rise">
+        <div>
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></div>
+          <h3>Сложные анимации</h3>
+          <p>Открывающиеся конверты, плавное появление блоков, эффекты при прокрутке и нажатии. Сайт запоминается и выглядит дорого, а на телефоне не тормозит.</p>
+        </div>
+        <div class="demo" aria-hidden="true">
+          <div class="env"><div class="back"></div><div class="card">Вы приглашены</div><div class="front"></div><div class="flap"></div><div class="seal"></div></div>
+        </div>
+      </div>
+      <div class="tile rise">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/></svg></div>
+        <h3>Сайт под ключ</h3>
+        <p>Лендинг, визитка, приглашение. Дизайн и структура под вашу задачу, адаптив под телефон.</p>
+      </div>
+      <div class="tile wide rise">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></div>
+        <h3>Хостинг и домен</h3>
+        <p>Подберу и зарегистрирую домен, размещу сайт на хостинге, настрою HTTPS и красивое превью ссылки в мессенджерах.</p>
+      </div>
+      <div class="tile wide rise">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 7H6a3 3 0 000 6h3M15 7h3a3 3 0 010 6h-3M8 10h8M7 17h10"/></svg></div>
+        <h3>Сервисы и интеграции</h3>
+        <p>Формы заявок, Telegram, карты, календари, аналитика, CRM и другие сервисы.</p>
+      </div>
+      <div class="tile wide rise">
+        <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+        <h3>База данных</h3>
+        <p>Заявки и ответы гостей сохраняются в базе, а не теряются в почте.</p>
+      </div>
+      <div class="tile wide rise">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div>
+        <h3>Сами меняете блоки</h3>
+        <p>Для небольших сайтов: тексты, фото и цены можно править без программиста.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="steps">
   <div class="wrap">
-    <h2>Как я работаю</h2>
-    <div class="steps">
-      <div class="card"><h3>Обсуждаем задачу</h3><p>Что за сайт, для кого, какие блоки и сервисы нужны.</p></div>
-      <div class="card"><h3>Делаю сайт</h3><p>Показываю промежуточный вариант, вношу правки.</p></div>
-      <div class="card"><h3>Подключаю всё нужное</h3><p>Домен, хостинг, формы, базу данных, интеграции.</p></div>
-      <div class="card"><h3>Запускаю и передаю</h3><p>Показываю, как редактировать блоки, если это нужно.</p></div>
+    <div class="head rise">
+      <span class="eyebrow">Как работаю</span>
+      <h2>Четыре шага до запуска</h2>
     </div>
+    <ol class="steps">
+      <li class="rise"><h3>Обсуждаем задачу</h3><p>Что за сайт, для кого, какие блоки и сервисы нужны.</p></li>
+      <li class="rise"><h3>Делаю дизайн и сайт</h3><p>Показываю промежуточный вариант, вношу правки.</p></li>
+      <li class="rise"><h3>Подключаю всё нужное</h3><p>Домен, хостинг, формы, базу данных, интеграции.</p></li>
+      <li class="rise"><h3>Запускаю и передаю</h3><p>Показываю, как редактировать блоки, если это нужно.</p></li>
+    </ol>
   </div>
 </section>
 
 <section id="prices">
   <div class="wrap">
-    <h2>Цены</h2>
-    <div class="card">
-      <table class="price">
-        <tr><td>Свадебный лендинг-приглашение (одностраничный)</td><td>от 3 500 ₽</td></tr>
-        <tr><td>Сайт-визитка (одностраничный)</td><td>от 10 000 ₽</td></tr>
-        <tr><td>Многостраничные сайты и крупные проекты</td><td>индивидуально</td></tr>
-      </table>
-      <p style="margin:14px 0 0;color:var(--muted)">Хостинг, домен, интеграции, база данных и редактирование блоков подбираются под задачу.</p>
+    <div class="head rise">
+      <span class="eyebrow">Цены</span>
+      <h2>Понятная стоимость</h2>
     </div>
+    <div class="prices">
+      <div class="price hot rise">
+        <h3>Свадебный лендинг-приглашение</h3>
+        <div class="sum"><small>от</small>3 500 ₽</div>
+        <p>Одностраничный сайт-приглашение: конверт, таймер, тайминг, карта и анкета гостей.</p>
+      </div>
+      <div class="price rise">
+        <h3>Сайт-визитка</h3>
+        <div class="sum"><small>от</small>10 000 ₽</div>
+        <p>Одностраничный сайт эксперта или компании с формой заявки и своим доменом.</p>
+      </div>
+      <div class="price rise">
+        <h3>Крупные проекты</h3>
+        <div class="sum sum-text">Индивидуально</div>
+        <p>Многостраничные сайты, сложные анимации и интеграции. Посчитаю после обсуждения.</p>
+      </div>
+    </div>
+    <p class="note">Хостинг, домен, интеграции, база данных и редактирование блоков подбираются под задачу.</p>
   </div>
 </section>
 
 <section id="contact">
   <div class="wrap">
-    <div class="contact">
-      <h2>Обсудим ваш сайт?</h2>
-      <p>Напишите, что нужно сделать, и я отвечу, сколько это будет стоить и сколько займёт времени.</p>
-      <a class="btn" href="https://t.me/stannad">Написать в Telegram @stannad</a>
+    <div class="contact rise">
+      <span class="eyebrow" style="position:relative">Связаться</span>
+      <h2>Расскажите, какой сайт вам нужен</h2>
+      <p>Напишите в Telegram, что хотите сделать. Отвечу, сколько это будет стоить и сколько займёт времени.</p>
+      <div class="row">
+        <a class="btn btn-main" href="https://t.me/stannad" target="_blank" rel="noopener">Написать в Telegram →</a>
+        <span class="nick">@stannad</span>
+        <button class="btn btn-line btn-sm" id="copy" type="button">Скопировать ник</button>
+      </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>© 2026 · Ann · сайты под ключ</footer>
+<footer>
+  <div class="wrap"><span>© 2026 · Анна Стасенко</span><span>Сайты под ключ · Telegram @stannad</span></div>
+</footer>
+
+<script>
+(function(){
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && matchMedia('(pointer: fine)').matches;
+  // подсветка плиток за курсором
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('pointermove',function(e){
+      var r=t.getBoundingClientRect();
+      t.style.setProperty('--x',(e.clientX-r.left)+'px');
+      t.style.setProperty('--y',(e.clientY-r.top)+'px');
+    });
+  });
+  // наклон макетов за курсором
+  if(!still && fine){
+    document.querySelectorAll('.mock').forEach(function(m){
+      var t=m.querySelector('.tilt');
+      m.addEventListener('pointermove',function(e){
+        var r=m.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        t.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*10)+'deg)';
+      });
+      m.addEventListener('pointerleave',function(){t.style.transform='';});
+    });
+  }
+  // копирование ника
+  var b=document.getElementById('copy');
+  b.addEventListener('click',function(){
+    var done=function(){b.textContent='Скопировано';setTimeout(function(){b.textContent='Скопировать ник';},1800);};
+    var pick=function(){var s=window.getSelection(),r=document.createRange();r.selectNodeContents(document.querySelector('.nick'));s.removeAllRanges();s.addRange(r);b.textContent='Выделено, нажмите Ctrl+C';};
+    try{navigator.clipboard.writeText('@stannad').then(done,pick);}catch(e){pick();}
+  });
+})();
+</script>
 </body>
 </html>
