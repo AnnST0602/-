@@ -232,18 +232,32 @@ nav a:hover{color:var(--fg)}
   background:radial-gradient(ellipse 80% 80% at 30% 20%,#ec4513,var(--red) 45%,#8e1503 100%)}
 .book .kicker{color:#3a0b04}
 .book p{color:#3a0b04}
-.info{display:grid;gap:12px;margin-top:26px;font-size:15px}
+.book-side{display:flex;flex-direction:column;min-width:0}
+.book-photo{margin:28px 0 0;margin-top:auto;padding:8px 8px 30px;background:#f4ece0;border-radius:3px;rotate:-3deg;width:min(300px,70%);position:relative;box-shadow:0 24px 40px -18px rgba(40,4,0,.8)}
+.book-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(1.1) contrast(1.05) sepia(.1)}
+.book-photo figcaption{position:absolute;left:10px;bottom:6px;font-family:var(--ital);font-style:italic;font-size:14px;color:#5a2a1f}
+.book-photo .stamp{bottom:40px;right:18px}
+.info{display:grid;gap:12px;margin:26px 0 28px;font-size:15px}
 .info div{display:grid;grid-template-columns:100px minmax(0,1fr);gap:12px}
 .info span{color:#4a1206;opacity:.8}
-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-label{display:grid;gap:6px;font-size:13px;font-weight:500;color:#2a0702}
-input,select,textarea{font:inherit;font-size:16px;color:#160604;background:rgba(255,235,215,.35);border:1px solid rgba(22,6,4,.25);border-radius:14px;padding:13px 14px;width:100%;min-width:0;color-scheme:light}
-input::placeholder,textarea::placeholder{color:rgba(22,6,4,.55)}
-input:focus,select:focus,textarea:focus{outline:none;border-color:#160604;background:rgba(255,235,215,.55)}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px;background:var(--card);color:var(--card-ink);border-radius:22px;padding:24px;box-shadow:0 30px 60px -30px rgba(40,4,0,.8);align-content:start}
+label{display:grid;gap:7px;font-size:14px;font-weight:500;color:#6d5246;min-width:0}
+input,select,textarea{font:inherit;font-size:16px;color:var(--card-ink);background:#fffaf2;border:1.5px solid #e3d3bd;border-radius:14px;padding:0 14px;height:52px;width:100%;min-width:0;color-scheme:light;-webkit-appearance:none;appearance:none}
+input[type=date]{display:flex;align-items:center;text-align:left}
+input[type=date]::-webkit-date-and-time-value{text-align:left}
+select{background:#fffaf2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a3203a' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:36px}
+textarea{height:auto;min-height:88px;padding:12px 14px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#a8927f}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rasp);box-shadow:0 0 0 3px rgba(163,32,58,.15)}
 .full{grid-column:1/-1}
-textarea{resize:vertical;min-height:80px}
-.book .btn-main{background:#160604;color:#f3d0b8}
-.done{grid-column:1/-1;display:none;padding:16px;border-radius:14px;background:rgba(22,6,4,.85);color:#f3d0b8}
+.gstep{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;height:52px;border:1.5px solid #e3d3bd;border-radius:14px;background:#fffaf2;overflow:hidden}
+.gstep button{height:100%;border:0;background:transparent;color:var(--rasp);font-size:22px;cursor:pointer}
+.gstep input{border:0;height:100%;background:transparent;text-align:center;padding:0;font-family:var(--caps);font-size:20px}
+.gstep input:focus{box-shadow:none}
+.book form .btn{height:56px;font-size:17px}
+.book .btn-main{background:var(--rasp);color:var(--card)}
+.book .btn-main:hover{background:#bb2846}
+.done{grid-column:1/-1;display:none;padding:16px;border-radius:14px;background:#efe3cf;color:var(--card-ink)}
 form.sent .done{display:block}
 
 footer{padding-block:48px 120px;color:var(--muted);font-size:14px}
@@ -277,7 +291,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   .cards{gap:12px}
   .mcard{padding:10px}
   .mcard .nm{font-size:14px}
-  form{grid-template-columns:minmax(0,1fr)}
+  .book{padding:26px 16px 16px;gap:26px;border-radius:24px}
+  .book-photo{display:none}
+  form{padding:18px 16px}
   .info div{grid-template-columns:86px minmax(0,1fr)}
   .print{padding:4px 4px 18px}
   .stamp{bottom:calc(18px + 5%)}
@@ -434,7 +450,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   <section id="book" style="padding-top:0">
     <div class="wrap">
       <div class="book reveal">
-        <div>
+        <div class="book-side">
           <span class="kicker">Бронь</span>
           <h2 class="title" style="margin-top:12px">Оставим для вас стол</h2>
           <p>Администратор напишет или перезвонит, чтобы подтвердить бронь.</p>
@@ -444,12 +460,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
             <div><span>Телефон</span>+7 (000) 000-00-00</div>
             <div><span>Instagram</span><a href="https://www.instagram.com/ami.osteria" target="_blank" rel="noopener">@ami.osteria</a></div>
           </div>
+        <figure class="book-photo"><img src="img/facade.jpg" alt="Вход в Ами вечером" loading="lazy"><span class="stamp">'25 10 25</span><figcaption>ждём у входа</figcaption></figure>
         </div>
         <form id="form" novalidate>
           <label class="full">Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться"></label>
-          <label>Телефон<input name="phone" type="tel" autocomplete="tel" placeholder="+7"></label>
-          <label>Гостей<input name="guests" id="fGuests" type="number" min="1" max="30" value="4"></label>
-          <label>Дата<input name="date" id="fDate" type="date"></label>
+          <label class="full">Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
+          <label class="full">Дата<input name="date" id="fDate" type="date"></label>
+          <label>Гостей<span class="gstep"><button type="button" data-g="-1" aria-label="Меньше гостей">−</button><input name="guests" id="fGuests" inputmode="numeric" value="4" aria-label="Гостей"><button type="button" data-g="1" aria-label="Больше гостей">+</button></span></label>
           <label>Время<select name="time" id="fTime"></select></label>
           <label class="full">Пожелания<textarea name="note" id="fNote" placeholder="Повод, детский стул, столик у окна"></textarea></label>
           <button class="btn btn-main full" type="submit">Забронировать</button>
@@ -677,6 +694,7 @@ document.querySelectorAll('.strip-nav button').forEach(b=>b.onclick=()=>strip.sc
 const fTime=document.getElementById('fTime');
 for(let h=12;h<=23;h++) for(const mm of ['00','30']) fTime.insertAdjacentHTML('beforeend',`<option${h===19&&mm==='00'?' selected':''}>${h}:${mm}</option>`);
 document.getElementById('fDate').valueAsDate = new Date();
+document.querySelectorAll('.gstep button').forEach(b=>b.onclick=()=>{ const f=document.getElementById('fGuests'); f.value=Math.min(30,Math.max(1,(parseInt(f.value)||1)+ +b.dataset.g)); });
 document.getElementById('form').addEventListener('submit', e=>{ e.preventDefault(); e.target.classList.add('sent'); });
 
 /* ---------- появление ---------- */
