@@ -45,7 +45,7 @@ h2{font:500 clamp(34px,5.4vw,64px)/1.02 var(--display);margin:0 0 24px;letter-sp
 h2 em{font:italic 400 1.05em/1 var(--serif);text-transform:none;letter-spacing:0;color:var(--accent)}
 section{position:relative;padding:120px 0}
 .lead{font-size:17px;color:var(--muted);max-width:640px}
-.photo{filter:sepia(.35) saturate(.75) contrast(1.05)}
+.photo{filter:sepia(.1) saturate(1.05) contrast(1.03)}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;font:400 12px/1 var(--display);letter-spacing:.22em;text-transform:uppercase;transition:.3s;cursor:pointer;border:1px solid var(--accent2);background:transparent;color:var(--text)}
@@ -116,8 +116,10 @@ body.loaded .hero h1{animation:lift 1.3s .6s cubic-bezier(.2,.7,.2,1) forwards}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:56px auto 0;padding:34px 0;border-block:1px solid var(--line)}
 .stat b{display:block;font:500 clamp(34px,4vw,54px)/1 var(--display);color:var(--accent)}
 .stat span{font-size:13px;color:var(--muted)}
-.group-photo{margin:60px auto 0;max-width:1100px;position:relative}
-.group-photo img{width:100%;height:auto;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
+.group-photo{margin:70px auto 0;max-width:1180px;position:relative;overflow:hidden;aspect-ratio:21/9}
+.group-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:transform 1.4s}
+.group-photo:hover img{transform:scale(1.03)}
+@media (max-width:700px){.group-photo{aspect-ratio:4/3}}
 @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
 
 /* lineup */
@@ -168,17 +170,16 @@ body.loaded .hero h1{animation:lift 1.3s .6s cubic-bezier(.2,.7,.2,1) forwards}
 @media (max-width:760px){.vcar{aspect-ratio:1.65}.vc-slide{width:86%}.vc-slide.l{transform:translateX(-150%) scale(.8)}.vc-slide.r{transform:translateX(50%) scale(.8)}.vc-arrow{width:42px;height:42px;top:auto;bottom:4px;transform:none}}
 
 /* programs */
+/* light & warm sections break up the dark page */
+.light{--bg:#efe4d3;--bg2:#e7d9c5;--card:#ddcbb3;--text:#1f150f;--muted:#5f4b3b;--dim:#8a7560;--accent:#94603a;--accent2:#2a1c14;--line:#d3bfa5;background:var(--bg);color:var(--text)}
+.warm{--accent:#f6dfc2;--accent2:#f6dfc2;--muted:#efd6bb;--line:rgba(255,233,207,.35);--bg:#3a2216;background:radial-gradient(120% 140% at 85% 0%,#b0774b 0%,#7d4a2d 45%,#4a2a1a 100%);color:var(--text)}
 .programs{overflow:hidden}
-.programs-bg{position:absolute;inset:0;z-index:0;opacity:.28}
-.programs-bg img{width:100%;height:100%;object-fit:cover}
-.programs::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--bg) 0%,rgba(18,12,10,.6) 25%,rgba(18,12,10,.75) 75%,var(--bg) 100%)}
-.programs .wrap{position:relative;z-index:2}
-.prog-list{margin-top:50px;border-top:1px solid rgba(234,215,189,.2)}
-.prog{display:grid;grid-template-columns:70px 1fr 1.3fr;gap:30px;align-items:baseline;padding:30px 0;border-bottom:1px solid rgba(234,215,189,.2);transition:.4s}
-.prog:hover{padding-left:14px;background:linear-gradient(90deg,rgba(207,174,134,.08),transparent)}
+.prog-list{margin-top:50px;border-top:1px solid var(--line)}
+.prog{display:grid;grid-template-columns:70px 1fr 1.3fr;gap:30px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line);transition:.4s}
+.prog:hover{padding-left:14px;background:linear-gradient(90deg,rgba(148,96,58,.12),transparent)}
 .prog .n{font:300 14px/1 var(--display);color:var(--accent);letter-spacing:.2em}
 .prog h3{margin:0;font:500 clamp(22px,2.6vw,32px)/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em}
-.prog p{margin:0;color:#cbbba8}
+.prog p{margin:0;color:var(--muted)}
 .prog-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:40px}
 .prog-cta p{margin:0;color:var(--muted);max-width:560px}
 @media (max-width:800px){.prog{grid-template-columns:44px 1fr;gap:8px 16px}.prog p{grid-column:2}}
@@ -187,7 +188,7 @@ body.loaded .hero h1{animation:lift 1.3s .6s cubic-bezier(.2,.7,.2,1) forwards}
 .rep{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .langs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .lang{padding:11px 18px;border:1px solid var(--line);font:400 13px/1 var(--display);text-transform:uppercase;letter-spacing:.14em;transition:.3s}
-.lang:hover{border-color:var(--accent);color:var(--accent)}
+.lang:hover{border-color:var(--accent);background:var(--accent);color:#3a2216}
 .big-num{font:500 clamp(90px,13vw,170px)/.9 var(--display);color:var(--accent);letter-spacing:.02em}
 .big-num small{display:block;font:italic 400 24px/1.2 var(--serif);color:var(--text);margin-top:10px}
 @media (max-width:900px){.rep{grid-template-columns:1fr;gap:40px}}
@@ -197,6 +198,7 @@ body.loaded .hero h1{animation:lift 1.3s .6s cubic-bezier(.2,.7,.2,1) forwards}
 .awards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:50px}
 .award{background:var(--bg2);padding:36px 30px;transition:.4s}
 .award:hover{background:var(--card)}
+.light .award{background:#f7efe3}.light .award:hover{background:#fffaf2}
 .award b{display:block;font:500 22px/1.15 var(--display);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
 .award span{color:var(--muted);font-size:15px}
 .stages{margin-top:60px;display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:center;align-items:center}
@@ -343,7 +345,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
         <div class="stat"><b data-count="15" data-pre="до ">0</b><span>музыкантов на сцене</span></div>
       </div>
     </div>
-    <div class="group-photo rv"><img class="photo" src="img/group.png" alt="Участники группы МУЗ СОЮЗ" loading="lazy"></div>
+    <div class="group-photo rv"><img class="photo" src="img/g1.jpg" alt="МУЗ СОЮЗ на открытой сцене" loading="lazy"></div>
   </section>
 
   <!-- СОСТАВ -->
@@ -400,8 +402,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   </section>
 
   <!-- ПРОГРАММЫ (тексты от группы) -->
-  <section class="programs" id="programs">
-    <div class="programs-bg"><img class="photo" src="img/g4.jpg" alt="" loading="lazy"></div>
+  <section class="programs light" id="programs">
     <div class="wrap">
       <div class="kicker rv">Программы</div>
       <h2 class="rv d1">Музыка <em>под ваш вечер</em></h2>
@@ -422,7 +423,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   </section>
 
   <!-- РЕПЕРТУАР -->
-  <section id="repertoire">
+  <section id="repertoire" class="warm">
     <div class="wrap rep">
       <div>
         <div class="kicker rv">Репертуар</div>
@@ -440,7 +441,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   </section>
 
   <!-- ПРИЗНАНИЕ -->
-  <section class="recog" id="awards">
+  <section class="recog light" id="awards">
     <div class="wrap">
       <div class="kicker rv center">Признание</div>
       <h2 class="rv d1" style="text-align:center">Нам <em>доверяют</em></h2>
@@ -462,9 +463,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
       <div class="kicker rv center">Фото</div>
       <h2 class="rv d1" style="text-align:center">На <em>сцене</em></h2>
       <div class="gallery">
-        <figure class="g1 rv"><img class="photo" src="img/g1.jpg" alt="МУЗ СОЮЗ на открытой сцене" loading="lazy"></figure>
+        <figure class="g1 rv"><img class="photo" src="img/g3.jpg" alt="Выступление на большой площадке" loading="lazy"></figure>
         <figure class="g2 rv d1"><img class="photo" src="img/g2.jpg" alt="Поклон после концерта со струнной секцией" loading="lazy"></figure>
-        <figure class="g3 rv d1"><img class="photo" src="img/g3.jpg" alt="Выступление на большой площадке" loading="lazy"></figure>
+        <figure class="g3 rv d1"><img class="photo" src="img/vocal.jpg" alt="Вокалисты на сцене" loading="lazy"></figure>
         <figure class="g4 rv d2"><img class="photo" src="img/g6.jpg" alt="Участники группы" loading="lazy" style="object-position:50% 20%"></figure>
         <figure class="g5 rv"><img class="photo" src="img/g4.jpg" alt="Гости танцуют под живую музыку" loading="lazy"></figure>
         <figure class="g6 rv d1"><img class="photo" src="img/g5.jpg" alt="Состав группы" loading="lazy"></figure>
