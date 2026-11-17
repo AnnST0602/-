@@ -556,8 +556,12 @@ links.querySelectorAll("a").forEach(a => a.onclick = () => setMenu(false));
 
 // reveal + counters
 const count = el => { const t = +el.dataset.count, pre = el.dataset.pre || (el.dataset.tilde !== undefined ? "≈" : ""), post = el.dataset.plus !== undefined ? "+" : "", s = performance.now();
-  const f = n => { const k = Math.min((n - s) / 1600, 1); el.textContent = pre + Math.round(t * (1 - Math.pow(1 - k, 3))) + (k === 1 ? post : ""); if (k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
-const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("in"); e.target.querySelectorAll("[data-count]").forEach(count); io.unobserve(e.target); }), { threshold: .12 });
+  const f = n => { if (+el.dataset.run !== s) return; const k = Math.min((n - s) / 1600, 1); el.textContent = pre + Math.round(t * (1 - Math.pow(1 - k, 3))) + (k === 1 ? post : ""); if (k < 1) requestAnimationFrame(f); }; el.dataset.run = s; requestAnimationFrame(f); };
+// replays every time a block comes back into view
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); e.target.querySelectorAll("[data-count]").forEach(count); }
+  else e.target.classList.remove("in");
+}), { threshold: .12 });
 document.querySelectorAll(".rv").forEach(el => io.observe(el));
 
 // video carousel (Rutube)
