@@ -58,10 +58,12 @@ section{position:relative;padding:120px 0}
 /* loader */
 .loader{position:fixed;inset:0;z-index:250;background:var(--bg);display:grid;place-items:center;transition:transform 1s cubic-bezier(.7,0,.2,1) .2s}
 body.loaded .loader{transform:translateY(-100%);visibility:hidden;transition:transform 1s cubic-bezier(.7,0,.2,1) .2s,visibility 0s 1.3s}
-.loader img{width:min(280px,60vw);opacity:0;animation:fadein 1s .2s forwards}
+.loader{grid-template-rows:auto auto;align-content:center;justify-items:center}
+.loader .intro{width:min(720px,100vw);aspect-ratio:8/5;mix-blend-mode:screen;filter:sepia(.25) brightness(.95)}
+.loader i{width:min(220px,50vw)!important;transform:scaleX(0);transform-origin:left;animation:bar 4.4s linear forwards!important}
 .loader i{display:block;height:1px;background:var(--accent);margin-top:22px;width:0;animation:bar 1.4s .3s cubic-bezier(.6,0,.2,1) forwards}
 @keyframes fadein{to{opacity:1}}
-@keyframes bar{to{width:100%}}
+@keyframes bar{to{transform:scaleX(1)}}
 
 /* nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.4s}
@@ -280,7 +282,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   <symbol id="i-max" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14h-1.9v-5.3L12 14.2l-2.7-3.5V16H7.4V8h1.8L12 11.7 14.8 8h1.8z"/></symbol>
 </svg>
 
-<div class="loader" aria-hidden="true"><div><img src="img/logo.png" alt=""><i></i></div></div>
+<div class="loader" aria-hidden="true"><video class="intro" src="img/intro.mp4" muted playsinline autoplay preload="auto"></video><i></i></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -539,9 +541,11 @@ const CONTACT = { phone: "79185526632", email: "timur_kam@inbox.ru" };
 document.getElementById("y").textContent = new Date().getFullYear();
 
 // loader + hero parallax
-const done = () => setTimeout(() => document.body.classList.add("loaded"), 1500);
-if (document.readyState === "complete") done(); else addEventListener("load", done);
-setTimeout(() => document.body.classList.add("loaded"), 4000);
+// intro: logo animation plays once, then the page opens (fallback if video can't play)
+const open = () => document.body.classList.add("loaded"), intro = document.querySelector(".intro");
+if (intro) { intro.addEventListener("ended", () => setTimeout(open, 250)); intro.addEventListener("error", open);
+  const p = intro.play(); if (p) p.catch(open); }
+setTimeout(open, intro ? 5600 : 1500);
 const hbg = document.querySelector(".hero-bg");
 
 // nav
