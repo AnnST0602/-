@@ -718,7 +718,7 @@ const motion = () => { ticking = false; const vh = innerHeight, y = scrollY;
   const p = Math.min(y / (vh * .8), 1);
   hw.forEach((w, k) => { w.style.transform = p ? `translateX(${(k ? 1 : -1) * p * 18}vw)` : ""; w.style.opacity = 1 - p * .85; });
   pxEls.forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return;
-    const k = (r.top + r.height / 2 - vh / 2) / vh; el.style.setProperty("--py", (-k * (+el.dataset.speed || .1) * 300).toFixed(1) + "px"); });
+    const k = (r.top + r.height / 2 - vh / 2) / vh; const lim = r.height * .075, v = Math.max(-lim, Math.min(lim, -k * (+el.dataset.speed || .1) * 300)); el.style.setProperty("--py", v.toFixed(1) + "px"); });
   if (disc) disc.style.transform = `rotate(${y * .25}deg)`;
   if (hsDist) { const r = hs.getBoundingClientRect(), k = Math.min(Math.max(-r.top / hsDist, 0), 1);
     hsTrack.style.transform = `translateX(${-k * hsDist}px)`; hsBar.style.setProperty("--p", k); } };
